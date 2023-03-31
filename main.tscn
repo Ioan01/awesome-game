@@ -1,3 +1,11 @@
-[gd_scene format=3 uid="uid://6r17kapyvvth"]
+[gd_scene load_steps=3 format=3 uid="uid://6r17kapyvvth"]
+
+[ext_resource type="Script" path="res://main.cs" id="1_nebfd"]
+[ext_resource type="Script" path="res://world.cs" id="2_14xqn"]
 
 [node name="root" type="Node2D"]
+script = ExtResource("1_nebfd")
+
+[node name="world" type="TileMap" parent="."]
+format = 2
+script = ExtResource("2_14xqn")
