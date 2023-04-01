@@ -23,7 +23,10 @@ public partial class player : character
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Vector2 direction = isPlayer1 ? Input.GetVector("left", "right", "up", "down") : Vector2.Zero;
+
+		Vector2 direction = isPlayer1
+			? Input.GetVector("left", "right", "up", "down")
+			: Input.GetVector("left_2", "right_2", "up_2", "down_2");
 		GD.Print(direction);
 		Move(direction);
 	}

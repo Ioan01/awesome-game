@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bxubqxh1hcc7x"]
 
-[ext_resource type="TileSet" uid="uid://c80svru2binmb" path="res://resources/scenes/walls_and_floor.tres" id="1_lldcn"]
+[ext_resource type="TileSet" uid="uid://c03uuhqidsif7" path="res://resources/scenes/walls_and_floor.tres" id="1_lldcn"]
 [ext_resource type="PackedScene" uid="uid://cl7u6dckam0r1" path="res://resources/characters/player/player.tscn" id="3_vjknm"]
 [ext_resource type="PackedScene" uid="uid://ctu7asquj3k5n" path="res://resources/characters/enemies/zombie/character_zomni.tscn" id="5_k4vvb"]
 
@@ -24,3 +24,7 @@ layer_0/tile_data = PackedInt32Array(-131076, 131079, 1, -131075, 131079, 1, -13
 
 [node name="zomni" parent="." instance=ExtResource("5_k4vvb")]
 position = Vector2(1299, 652)
+
+[node name="movement" parent="." instance=ExtResource("3_vjknm")]
+position = Vector2(-390, 116)
+isPlayer1 = false
