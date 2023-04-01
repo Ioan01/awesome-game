@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://rworbtoq2ish"]
+
+[ext_resource type="Texture2D" uid="uid://bs7bn73bv4gbh" path="res://resources/projectiles/flames/flame_horizontal.png" id="1_bcosj"]
+[ext_resource type="Script" path="res://projectile.cs" id="2_8rpsa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nboke"]
+atlas = ExtResource("1_bcosj")
+region = Rect2(1, 2, 10, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhykk"]
+atlas = ExtResource("1_bcosj")
+region = Rect2(13, 2, 10, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uiwlb"]
+atlas = ExtResource("1_bcosj")
+region = Rect2(25, 2, 10, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n67hu"]
+atlas = ExtResource("1_bcosj")
+region = Rect2(37, 2, 10, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_24v5l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nboke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhykk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uiwlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n67hu")
+}],
+"loop": true,
+"name": &"new_animation_5",
+"speed": 5.0
+}]
+
+[node name="projectile" type="AnimatedSprite2D"]
+texture_filter = 1
+position = Vector2(111, 219)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_24v5l")
+animation = &"new_animation_5"
+frame_progress = 0.335923
+script = ExtResource("2_8rpsa")

@@ -23,13 +23,13 @@ public partial class enemy : npc
 
 	private CharacterBody2D GetTargetHelper(double delta)
 	{
+		elapsed += delta;
+		
 		if (oldTarget == null || elapsed >= 2)
 		{
 			oldTarget = GetTarget();
 			elapsed = 0;
 		}
-
-		elapsed += delta;
 
 		return oldTarget;
 	}
@@ -40,7 +40,6 @@ public partial class enemy : npc
 		var npcs = GetTree().GetNodesInGroup("npcs").ToHashSet();
 		npcs.ExceptWith(GetTree().GetNodesInGroup("enemies"));
 		targets.UnionWith(npcs);
-		
 		
 		return targets.MaxBy(x =>
 		{

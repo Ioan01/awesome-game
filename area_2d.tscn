@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3hh06ftm3o6i"]
+
+[ext_resource type="Script" path="res://Projectile.cs" id="1_53ukq"]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_53ukq")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

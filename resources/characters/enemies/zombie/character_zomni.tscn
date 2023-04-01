@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://ctu7asquj3k5n"]
 
-[ext_resource type="Script" path="res://resources/characters/enemies/zombie/enemy.cs" id="1_bw1nn"]
+[ext_resource type="Script" path="res://resources/characters/enemies/enemy.cs" id="1_my2ke"]
 [ext_resource type="Texture2D" uid="uid://dhs2fxw1k6px0" path="res://resources/characters/enemies/zombie/idle/big_zombie_idle_anim_f0.png" id="2_m05cb"]
 [ext_resource type="Texture2D" uid="uid://dkg0ubrq3yjjg" path="res://resources/characters/enemies/zombie/idle/big_zombie_idle_anim_f1.png" id="3_oa5hd"]
 [ext_resource type="Texture2D" uid="uid://cbt33gmkaspu5" path="res://resources/characters/enemies/zombie/idle/big_zombie_idle_anim_f2.png" id="4_7lvml"]
@@ -53,7 +53,7 @@ animations = [{
 [node name="movement" type="CharacterBody2D"]
 texture_filter = 1
 scale = Vector2(10, 10)
-script = ExtResource("1_bw1nn")
+script = ExtResource("1_my2ke")
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(-0.3, 3.4)

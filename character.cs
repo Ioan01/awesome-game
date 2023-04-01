@@ -2,10 +2,10 @@
 
 namespace Awesomegame;
 
-public partial class character : CharacterBody2D
+public abstract partial class character : CharacterBody2D
 {
     [Export]
-    protected virtual float Speed { get; set; } = 300.0f;
+    protected abstract float Speed { get; set; }
     
     protected virtual AnimatedSprite2D sprite2D { get; set; } = null!;
 
