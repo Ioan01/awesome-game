@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cl7u6dckam0r1"]
+[gd_scene load_steps=15 format=3 uid="uid://cl7u6dckam0r1"]
 
 [ext_resource type="Script" path="res://player.cs" id="1_0tvsw"]
 [ext_resource type="Texture2D" uid="uid://ch8vbyjwpiyrr" path="res://resources/characters/player/idle/wizzard_m_idle_anim_f0.png" id="2_0etm5"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bi5wiak3cabfq" path="res://resources/characters/player/run/wizzard_m_run_anim_f3.png" id="8_3j3lx"]
 [ext_resource type="Texture2D" uid="uid://c4i0j6dhqti7x" path="res://circle-outline-png-6.png" id="10_01gnf"]
 [ext_resource type="Texture2D" uid="uid://bnsd6dlg6cxm8" path="res://resources/characters/player/weapon_green_magic_staff.png" id="11_bv0mr"]
+[ext_resource type="Texture2D" uid="uid://be1codkky7pyn" path="res://resources/characters/skelet_idle_anim_f2.png" id="12_0258y"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_oadbq"]
 animations = [{
@@ -77,3 +78,7 @@ texture_scale = 0.1
 position = Vector2(6.5, 5)
 scale = Vector2(0.3875, 0.62)
 texture = ExtResource("11_bv0mr")
+
+[node name="skull" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("12_0258y")
