@@ -9,7 +9,7 @@ public partial class main : Node2D
 	{
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	// Called every frame. 'delta' is the elapsed time since the previous frame.0
 	public override void _Process(double delta)
 	{
 	}
