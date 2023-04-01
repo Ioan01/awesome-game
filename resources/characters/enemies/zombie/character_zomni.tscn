@@ -1,0 +1,71 @@
+[gd_scene load_steps=12 format=3 uid="uid://ctu7asquj3k5n"]
+
+[ext_resource type="Script" path="res://resources/characters/enemies/zombie/character_zomni.cs" id="1_f8s2r"]
+[ext_resource type="Texture2D" uid="uid://dhs2fxw1k6px0" path="res://resources/characters/enemies/zombie/idle/big_zombie_idle_anim_f0.png" id="2_m05cb"]
+[ext_resource type="Texture2D" uid="uid://dkg0ubrq3yjjg" path="res://resources/characters/enemies/zombie/idle/big_zombie_idle_anim_f1.png" id="3_oa5hd"]
+[ext_resource type="Texture2D" uid="uid://cbt33gmkaspu5" path="res://resources/characters/enemies/zombie/idle/big_zombie_idle_anim_f2.png" id="4_7lvml"]
+[ext_resource type="Texture2D" uid="uid://rn7uvly7yur5" path="res://resources/characters/enemies/zombie/idle/big_zombie_idle_anim_f3.png" id="5_mfh81"]
+[ext_resource type="Texture2D" uid="uid://d3o12bldc5cnd" path="res://resources/characters/enemies/zombie/run/big_zombie_run_anim_f0.png" id="6_1l2u8"]
+[ext_resource type="Texture2D" uid="uid://dw7n12811xmea" path="res://resources/characters/enemies/zombie/run/big_zombie_run_anim_f1.png" id="7_a2x70"]
+[ext_resource type="Texture2D" uid="uid://bicbmqvod27ql" path="res://resources/characters/enemies/zombie/run/big_zombie_run_anim_f2.png" id="8_0c0po"]
+[ext_resource type="Texture2D" uid="uid://cgtxnkmvtrm5o" path="res://resources/characters/enemies/zombie/run/big_zombie_run_anim_f3.png" id="9_5ssbc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s2glb"]
+size = Vector2(19.2, 26.8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gnida"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_m05cb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_oa5hd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7lvml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_mfh81")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_1l2u8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_a2x70")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_0c0po")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_5ssbc")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}]
+
+[node name="movement" type="CharacterBody2D"]
+texture_filter = 1
+scale = Vector2(10, 10)
+script = ExtResource("1_f8s2r")
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(-0.3, 3.4)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_s2glb")
+
+[node name="animation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gnida")
+animation = &"run"
+frame_progress = 0.396078
+
+[node name="navigation" type="NavigationAgent2D" parent="."]
+path_max_distance = 10000.0
+navigation_layers = 255
+debug_enabled = true

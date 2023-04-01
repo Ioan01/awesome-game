@@ -12,9 +12,14 @@ config_version=5
 
 config/name="Awesome-game"
 run/main_scene="res://main.tscn"
-config/features=PackedStringArray("4.0", "Forward Plus")
+config/features=PackedStringArray("4.0", "C#", "Forward Plus")
+boot_splash/use_filter=false
 config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="Awesome-game"
+
+[physics]
+
+common/physics_ticks_per_second=144

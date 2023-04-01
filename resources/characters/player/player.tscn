@@ -1,0 +1,68 @@
+[gd_scene load_steps=12 format=3 uid="uid://cl7u6dckam0r1"]
+
+[ext_resource type="Script" path="res://movement.cs" id="1_0yhvs"]
+[ext_resource type="Texture2D" uid="uid://ch8vbyjwpiyrr" path="res://resources/characters/player/idle/wizzard_m_idle_anim_f0.png" id="2_0etm5"]
+[ext_resource type="Texture2D" uid="uid://c2gp2he5nb86y" path="res://resources/characters/player/idle/wizzard_m_idle_anim_f1.png" id="2_l0sfx"]
+[ext_resource type="Texture2D" uid="uid://d4wxco2imdy1" path="res://resources/characters/player/idle/wizzard_m_idle_anim_f2.png" id="3_6wkcn"]
+[ext_resource type="Texture2D" uid="uid://tvdprpm0jy7t" path="res://resources/characters/player/idle/wizzard_m_idle_anim_f3.png" id="4_3r07q"]
+[ext_resource type="Texture2D" uid="uid://du0woubvu8nci" path="res://resources/characters/player/run/wizzard_m_run_anim_f0.png" id="6_ofwpm"]
+[ext_resource type="Texture2D" uid="uid://2vnfa2g0m0nc" path="res://resources/characters/player/run/wizzard_m_run_anim_f1.png" id="6_pr2hp"]
+[ext_resource type="Texture2D" uid="uid://c5p7i8lqpq087" path="res://resources/characters/player/run/wizzard_m_run_anim_f2.png" id="7_tkqab"]
+[ext_resource type="Texture2D" uid="uid://bi5wiak3cabfq" path="res://resources/characters/player/run/wizzard_m_run_anim_f3.png" id="8_3j3lx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oadbq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0etm5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_l0sfx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6wkcn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3r07q")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ofwpm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pr2hp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_tkqab")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3j3lx")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ojmdo"]
+size = Vector2(12, 18)
+
+[node name="movement" type="CharacterBody2D"]
+texture_filter = 1
+scale = Vector2(10, 10)
+script = ExtResource("1_0yhvs")
+
+[node name="animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_oadbq")
+animation = &"run"
+frame_progress = 0.401921
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(1, 5)
+shape = SubResource("RectangleShape2D_ojmdo")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.4, 0.4)
