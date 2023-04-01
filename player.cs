@@ -60,9 +60,12 @@ public partial class player : character
             elapsed >= 0.75f / GlobalState.AttackSpeedModifier / GlobalState.SpeedModifier)
         {
             var b = GD.Load<PackedScene>("res://projectile.tscn").Instantiate() as projectile;
-            Owner.AddChild(b);
-            b.GlobalTransform = GlobalTransform;
-            b.direction = ctrlrAimDir.Normalized();
+            if (b != null)
+            {
+	            Owner.AddChild(b);
+	            b.GlobalTransform = GlobalTransform;
+	            b.direction = ctrlrAimDir.Normalized();
+            }
 
             elapsed = 0;
 			

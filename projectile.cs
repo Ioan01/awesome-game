@@ -1,11 +1,8 @@
+using Awesomegame;
 using Godot;
-using System;
 
 public partial class projectile : Area2D
 {
-    [Signal]
-    public delegate void explodedEventHandler(Vector2 origin);
-
     private const float speed = 1000;
     public Vector2 direction { get; set; }
 
@@ -15,9 +12,9 @@ public partial class projectile : Area2D
         Position += direction * speed * (float)delta;
     }
 
-    void onProjectileBodyEntered(CharacterBody2D body)
+    public void _on_body_entered(Node2D node)
     {
-        EmitSignal("explodedEventHandler", GlobalTransform.Origin);
+        if (GlobalTransform == node.GlobalTransform || node is not character) return;
         QueueFree();
     }
 }
