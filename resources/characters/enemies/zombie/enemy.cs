@@ -41,6 +41,7 @@ public partial class enemy : npc
 		npcs.ExceptWith(GetTree().GetNodesInGroup("enemies"));
 		targets.UnionWith(npcs);
 		
+		
 		return targets.MaxBy(x =>
 		{
 			var p = x as CharacterBody2D;

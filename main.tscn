@@ -29,3 +29,6 @@ position = Vector2(1299, 652)
 [node name="movement" parent="." instance=ExtResource("3_vjknm")]
 position = Vector2(-390, 116)
 isPlayer1 = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.2, 0.2)
