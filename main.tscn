@@ -374,5 +374,6 @@ layer_0/tile_data = PackedInt32Array(-131076, 131079, 1, -131075, 131079, 1, -13
 position = Vector2(-619, -240)
 
 [node name="nav" type="NavigationRegion2D" parent="."]
+position = Vector2(1, 1)
 navigation_polygon = SubResource("NavigationPolygon_34qi0")
 navigation_layers = 255
