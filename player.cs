@@ -5,6 +5,8 @@ using Godot;
 
 public partial class player : character
 {
+
+	private PointLight2D light2D;
 	[Export]
 	private bool isPlayer1 = true;
 
@@ -18,10 +20,16 @@ public partial class player : character
 	{
 		sprite2D = FindChild("animations") as AnimatedSprite2D;
 		collision = FindChild("collision") as CollisionShape2D;
+		light2D = FindChild("light") as PointLight2D;
 		
 		sprite2D.Play("idle");
 		
 		AddToGroup("players");
+	}
+
+	public void setIntensity(float intensity)
+	{
+		light2D.Energy = intensity;
 	}
 
 	public override void _PhysicsProcess(double delta)

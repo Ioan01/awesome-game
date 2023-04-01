@@ -20,9 +20,9 @@ public partial class darkness : DirectionalLight2D
 	{
 		elapsed += delta;
 
-		if (elapsed >= 1)
+		if (elapsed >= 2)
 		{
-			state.Darkness += 0.1f;
+			state.Darkness += 0.01f;
 			elapsed = 0;
 		}
 		

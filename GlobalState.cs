@@ -9,7 +9,6 @@ public partial class GlobalState : Node2D
 
 	public  bool Sane { get; set; }
 
-	public bool Sane { get; set; }
 
 	public static float SpeedModifier { get; set; } = 1f;
 
@@ -32,12 +31,12 @@ public partial class GlobalState : Node2D
 		set
 		{
 			_darkness = value;
-			if (value > 0.95f)
-				_darkness = 0.95f;
+			if (value > 0.9f)
+				_darkness = 0.9f;
 			
 			foreach (player node in GetTree().GetNodesInGroup("players"))
 			{
-				//player.Set
+				node.setIntensity(_darkness);
 			}
 			
 			

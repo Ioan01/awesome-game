@@ -99,3 +99,7 @@ shoot_down={
 [physics]
 
 common/physics_ticks_per_second=144
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"

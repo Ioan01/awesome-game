@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cl7u6dckam0r1" path="res://resources/characters/player/player.tscn" id="3_vjknm"]
 [ext_resource type="Texture2D" uid="uid://ci2r5d4kvpoom" path="res://resources/items/coin/coin_anim_f0.png" id="4_8n8fn"]
 [ext_resource type="PackedScene" uid="uid://drw57c1l2efa2" path="res://resources/items/coin/coin.tscn" id="4_bk3nw"]
-[ext_resource type="PackedScene" uid="uid://ctu7asquj3k5n" path="res://resources/characters/enemies/zombie/character_zomni.tscn" id="5_k4vvb"]
+[ext_resource type="Script" path="res://darkness.cs" id="6_cbp5p"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jgbya"]
 font_size = 100
@@ -33,7 +33,7 @@ layer_0/tile_data = PackedInt32Array(-131076, 131079, 1, -131075, 131079, 1, -13
 position = Vector2(-40.9999, 154)
 
 [node name="movement" parent="." instance=ExtResource("3_vjknm")]
-position = Vector2(-390, 116)
+position = Vector2(-552, 261)
 isPlayer1 = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -64,5 +64,7 @@ text = "0
 "
 label_settings = SubResource("LabelSettings_jgbya")
 
-[node name="movement2" parent="." instance=ExtResource("5_k4vvb")]
-position = Vector2(477, -102)
+[node name="darkness" type="DirectionalLight2D" parent="."]
+energy = 0.0
+blend_mode = 1
+script = ExtResource("6_cbp5p")

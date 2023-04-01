@@ -53,6 +53,7 @@ size = Vector2(12, 18)
 
 [node name="movement" type="CharacterBody2D"]
 texture_filter = 1
+position = Vector2(237, 53)
 scale = Vector2(10, 10)
 script = ExtResource("1_0tvsw")
 
@@ -67,5 +68,6 @@ shape = SubResource("RectangleShape2D_ojmdo")
 
 [node name="light" type="PointLight2D" parent="."]
 position = Vector2(0.4, 3.8)
+energy = 0.0
 texture = ExtResource("10_01gnf")
 texture_scale = 0.1
