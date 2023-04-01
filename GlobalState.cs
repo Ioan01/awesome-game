@@ -6,8 +6,8 @@ public partial class GlobalState : Node2D
 {
 	private int _gold = 0;
 	private float _darkness;
-	private int _player1hp = 10;
-	private int _player2hp = 10;
+	private int _player1hp = 5;
+	private int _player2hp = 5;
 
 	public  bool Sane { get; set; }
 

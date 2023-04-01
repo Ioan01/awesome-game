@@ -5,6 +5,22 @@ using Godot;
 
 public partial class player : character
 {
+	private GlobalState state;
+	
+	private int _hp = 5;
+	public override int Hp
+	{
+		get => _hp;
+		set
+		{
+			_hp = value;
+			
+			if (!isPlayer1)
+				state.Player1Hearts = value;
+			else
+				state.Player2Hearts = value;
+		}
+	}
 
 	private PointLight2D light2D;
     [Export]
@@ -18,6 +34,7 @@ public partial class player : character
     // Get the gravity from the project settings to be synced with RigidBody nodes.
     public override void _Ready()
     {
+	    state = GetTree().CurrentScene.FindChild("globals") as GlobalState;
         sprite2D = FindChild("animations") as AnimatedSprite2D;
         collision = FindChild("collision") as CollisionShape2D;
 		light2D = FindChild("light") as PointLight2D;

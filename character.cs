@@ -4,6 +4,8 @@ namespace Awesomegame;
 
 public abstract partial class character : CharacterBody2D
 {
+    public virtual int Hp { get; set; } = 5;
+
     [Export]
     protected abstract float Speed { get; set; }
     

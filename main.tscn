@@ -80,8 +80,7 @@ offset_left = -1880.0
 offset_top = -777.0
 offset_right = -1430.0
 offset_bottom = -595.0
-text = "10
-"
+text = "5"
 label_settings = SubResource("LabelSettings_jgbya")
 
 [node name="player2_hp" type="Node2D" parent="hud"]
@@ -97,8 +96,7 @@ offset_left = -1879.0
 offset_top = -1339.0
 offset_right = -1429.0
 offset_bottom = -1134.0
-text = "10
-"
+text = "5"
 label_settings = SubResource("LabelSettings_jgbya")
 
 [node name="WizzardMIdleAnimF0" type="Sprite2D" parent="hud/player2_hp"]
