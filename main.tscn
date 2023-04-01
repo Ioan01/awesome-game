@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxubqxh1hcc7x"]
+[gd_scene load_steps=9 format=3 uid="uid://bxubqxh1hcc7x"]
 
 [ext_resource type="Script" path="res://GlobalState.cs" id="1_d0xmn"]
 [ext_resource type="TileSet" uid="uid://c80svru2binmb" path="res://resources/scenes/walls_and_floor.tres" id="1_lldcn"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ci2r5d4kvpoom" path="res://resources/items/coin/coin_anim_f0.png" id="4_8n8fn"]
 [ext_resource type="PackedScene" uid="uid://drw57c1l2efa2" path="res://resources/items/coin/coin.tscn" id="4_bk3nw"]
 [ext_resource type="Script" path="res://darkness.cs" id="6_cbp5p"]
+[ext_resource type="PackedScene" uid="uid://c2pkid0ok4ewc" path="res://resources/items/torch/torch.tscn" id="7_uudc8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jgbya"]
 font_size = 100
@@ -68,3 +69,6 @@ label_settings = SubResource("LabelSettings_jgbya")
 energy = 0.0
 blend_mode = 1
 script = ExtResource("6_cbp5p")
+
+[node name="torch" parent="." instance=ExtResource("7_uudc8")]
+position = Vector2(-345, -324)

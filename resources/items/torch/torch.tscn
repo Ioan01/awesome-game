@@ -1,0 +1,58 @@
+[gd_scene load_steps=11 format=3 uid="uid://c2pkid0ok4ewc"]
+
+[ext_resource type="Texture2D" uid="uid://c31xjrjn04qxi" path="res://resources/items/torch/torch_1.png" id="1_cgstm"]
+[ext_resource type="Texture2D" uid="uid://d4f7jfp7pct0d" path="res://resources/items/torch/torch_2.png" id="2_rxs0c"]
+[ext_resource type="Texture2D" uid="uid://byo5jgugeaieq" path="res://resources/items/torch/torch_3.png" id="3_d6j8w"]
+[ext_resource type="Texture2D" uid="uid://72mitmvj5mkc" path="res://resources/items/torch/torch_4.png" id="4_j0tu1"]
+[ext_resource type="Texture2D" uid="uid://ix75w6m7gn1v" path="res://resources/items/torch/torch_5.png" id="5_p712n"]
+[ext_resource type="Texture2D" uid="uid://ciwll4ksyt77d" path="res://resources/items/torch/torch_6.png" id="6_bp1qc"]
+[ext_resource type="Texture2D" uid="uid://bnx8cbjispim3" path="res://resources/items/torch/torch_7.png" id="7_0rlnv"]
+[ext_resource type="Texture2D" uid="uid://0o3woihgstwn" path="res://resources/items/torch/torch_8.png" id="8_fphd4"]
+[ext_resource type="Texture2D" uid="uid://c4i0j6dhqti7x" path="res://circle-outline-png-6.png" id="9_4ba13"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w6q4n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cgstm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_rxs0c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_d6j8w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_j0tu1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_p712n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_bp1qc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0rlnv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_fphd4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="torch" type="AnimatedSprite2D"]
+texture_filter = 1
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_w6q4n")
+frame_progress = 0.441067
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -6)
+scale = Vector2(1, 0.8125)
+color = Color(0.607843, 0.466667, 0.160784, 1)
+energy = 0.59
+shadow_enabled = true
+texture = ExtResource("9_4ba13")
+texture_scale = 0.2
