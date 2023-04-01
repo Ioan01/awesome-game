@@ -18,6 +18,8 @@ public partial class GlobalState : Node2D
 
 	public bool IsDoneFighting = false;
 
+	public int CurrentLevel = 0;
+
 	public int Player1Hearts
 	{
 		get => _player1hp;
