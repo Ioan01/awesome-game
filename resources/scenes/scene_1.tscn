@@ -1,10 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://brt341wfoohh3"]
+[gd_scene load_steps=5 format=3 uid="uid://brt341wfoohh3"]
 
+[ext_resource type="Script" path="res://map.cs" id="1_gcnm2"]
 [ext_resource type="TileSet" uid="uid://c80svru2binmb" path="res://resources/scenes/walls_and_floor.tres" id="1_u8ihc"]
 [ext_resource type="PackedScene" uid="uid://cl7u6dckam0r1" path="res://resources/characters/player/player.tscn" id="2_0hllk"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_gclnf"]
+radius = 105.513
+
 [node name="scene1" type="Node2D"]
-position = Vector2(343.283, 422.506)
+position = Vector2(-15, 30)
+script = ExtResource("1_gcnm2")
 
 [node name="floor" type="TileMap" parent="."]
 texture_filter = 1
@@ -27,3 +32,12 @@ position = Vector2(-186.283, 514.494)
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(861.717, 1210.49)
 zoom = Vector2(0.18, 0.18)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-437, 2482)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(40, -4)
+shape = SubResource("CircleShape2D_gclnf")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
