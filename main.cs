@@ -7,7 +7,6 @@ public partial class main : Node2D
 
 	public override void _EnterTree()
 	{
-		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

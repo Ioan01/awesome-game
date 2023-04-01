@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsmenpa7mnkb1"]
+
+[ext_resource type="Script" path="res://resources/items/item.cs" id="1_c4v5p"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2jvcn"]
+
+[node name="item" type="Area2D"]
+script = ExtResource("1_c4v5p")
+
+[node name="collision" type="CollisionShape2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2jvcn")

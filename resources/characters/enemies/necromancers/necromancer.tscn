@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://vauwkfaf5myr"]
+
+[ext_resource type="Script" path="res://resources/characters/enemies/rangedEnemy.cs" id="1_afivi"]
+[ext_resource type="Texture2D" uid="uid://c2ebib80ui5bc" path="res://resources/characters/enemies/necromancers/run/necromancer_run_anim_f0.png" id="2_k37by"]
+[ext_resource type="Texture2D" uid="uid://dr5fjsd3323e4" path="res://resources/characters/enemies/necromancers/run/necromancer_run_anim_f1.png" id="3_pxsp3"]
+[ext_resource type="Texture2D" uid="uid://bj0c5jfqk5omq" path="res://resources/characters/enemies/necromancers/run/necromancer_run_anim_f2.png" id="4_77p56"]
+[ext_resource type="Texture2D" uid="uid://ckw5v8xdn4bcg" path="res://resources/characters/enemies/necromancers/run/necromancer_run_anim_f3.png" id="5_q708v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5ndv"]
+size = Vector2(12.6, 14.5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ndu0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_k37by")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_pxsp3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_77p56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_q708v")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[node name="movement" type="CharacterBody2D"]
+texture_filter = 1
+scale = Vector2(10, 10)
+script = ExtResource("1_afivi")
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(-0.3, 2.75)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_s5ndv")
+
+[node name="animation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5ndu0")
+animation = &"run"
+frame_progress = 0.927006

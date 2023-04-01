@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.0", "C#", "Forward Plus")
 boot_splash/use_filter=false
 config/icon="res://icon.svg"
 
+[autoload]
+
+GlobalState="*res://GlobalState.cs"
+
 [dotnet]
 
 project/assembly_name="Awesome-game"
