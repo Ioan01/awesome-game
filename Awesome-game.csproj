@@ -4,4 +4,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>Awesomegame</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="resources\characters\enemies\zombie" />
+  </ItemGroup>
 </Project>
