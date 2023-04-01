@@ -22,6 +22,9 @@ public partial class map : Node2D
 			// GetTree().ChangeSceneToFile
 			var nextLevel = ResourceLoader.Load<PackedScene>($"res://resources/scenes/scene_{1}.tscn").Instantiate();
 			AddChild(nextLevel);
+			var parent = GetParent();
+			parent.Free();
+			parent = nextLevel;
 		}
 	}
 }
