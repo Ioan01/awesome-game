@@ -87,5 +87,8 @@ public partial class player : character
 			elapsed = 0;
 			
 		}
+		
 	}
+	
+	
 }

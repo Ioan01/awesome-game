@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfjnje1l3s65p"]
+
+[ext_resource type="Script" path="res://resources/items/item.cs" id="1_ysmk7"]
+[ext_resource type="Texture2D" uid="uid://dn1eufws3qk3s" path="res://resources/items/potions/flask_blue.png" id="2_1mmhd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kspjo"]
+size = Vector2(12.8, 15.25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iut1l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1mmhd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="item" type="Area2D"]
+scale = Vector2(10, 10)
+script = ExtResource("1_ysmk7")
+Price = 30
+Name = "Projectile Size"
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(-0.3, 1.425)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_kspjo")
+
+[node name="animation" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_iut1l")
