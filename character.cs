@@ -57,7 +57,7 @@ public abstract partial class character : CharacterBody2D
 
     public void KnockBack(Vector2 direction)
     {
-        knockBackVelocity = direction * 1000;
+        knockBackVelocity = direction * 3;
         sinceKnockback = 0;
     }
     
@@ -71,7 +71,7 @@ public abstract partial class character : CharacterBody2D
 		
         if (direction != Vector2.Zero)
         {
-            velocity = (knockBackVelocity != Vector2.Zero) ? knockBackVelocity : direction * Speed;
+            velocity = ((knockBackVelocity != Vector2.Zero) ? knockBackVelocity : direction) * Speed;
 
             if (direction.X < 0)
             {
@@ -89,8 +89,8 @@ public abstract partial class character : CharacterBody2D
         }
         else
         {
-            velocity.X = (knockBackVelocity != Vector2.Zero) ? knockBackVelocity.X : Mathf.MoveToward(Velocity.X, 0, Speed);
-            velocity.Y = (knockBackVelocity != Vector2.Zero) ? knockBackVelocity.Y : Mathf.MoveToward(Velocity.Y, 0, Speed);
+            velocity.X = (knockBackVelocity != Vector2.Zero) ? knockBackVelocity.X * Speed : Mathf.MoveToward(Velocity.X, 0, Speed);
+            velocity.Y = (knockBackVelocity != Vector2.Zero) ? knockBackVelocity.Y * Speed : Mathf.MoveToward(Velocity.Y, 0, Speed);
 			
             sprite2D?.Play("idle");
         }

@@ -14,9 +14,13 @@ public partial class projectile : Area2D
 
     public void _on_body_entered(Node2D node)
     {
-        if (GlobalTransform == node.GlobalTransform || node is not character c) return;
-        c.Hp--;
-        c.KnockBack(direction);
+        if (GlobalTransform == node.GlobalTransform) return;
+        if (node is character c)
+        {
+            c.Hp--;
+            c.KnockBack(direction);
+        }
+
         QueueFree();
     }
 }

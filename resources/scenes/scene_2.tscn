@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqc5n6mpjpeno"]
+[gd_scene load_steps=5 format=3 uid="uid://i4sf1br2jht3"]
 
 [ext_resource type="Script" path="res://map.cs" id="1_fni1l"]
 [ext_resource type="TileSet" uid="uid://c80svru2binmb" path="res://resources/scenes/walls_and_floor.tres" id="1_h420t"]
