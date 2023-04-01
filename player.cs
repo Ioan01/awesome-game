@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using Godot;
 
 public partial class player : CharacterBody2D
@@ -32,13 +30,12 @@ public partial class player : CharacterBody2D
 		
 		
 		AddToGroup("players");
-
-
-		var enemies = GetTree().GetNodesInGroup("npcs").ToList();
 		
-		enemies.ForEach(e =>
+		var characters = GetTree().GetNodesInGroup("characters").ToList();
+		
+		characters.ForEach(c =>
 		{
-			(e as character).OnPlayerAdded(this);
+			(c as character).OnPlayerAdded(this);
 		});
 
 	}
@@ -46,14 +43,10 @@ public partial class player : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
-
 		
-
 		// Get the input direction and handle the movement/deceleration.
 		// As good practice, you should replace UI actions with custom gameplay actions.
 		Vector2 direction = isPlayer1 ? Input.GetVector("left", "right", "up", "down") : Vector2.Zero;
-		
-		
 		
 		if (direction != Vector2.Zero)
 		{
@@ -80,10 +73,8 @@ public partial class player : CharacterBody2D
 			velocity.Y = Mathf.MoveToward(Velocity.Y, 0, Speed);
 			
 			sprite2D.Play("idle");
-
 		}
-		
-		
+
 		Velocity = velocity;
 		MoveAndSlide();
 	}

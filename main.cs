@@ -13,7 +13,7 @@ public partial class main : Node2D
 
 	public override void _Ready()
 	{
-		foreach (var node in GetTree().GetNodesInGroup("npcs"))
+		foreach (var node in GetTree().GetNodesInGroup("characters"))
 		{
 			(node as character).OnPlayerAdded(FindChild("player") as player);
 		}
