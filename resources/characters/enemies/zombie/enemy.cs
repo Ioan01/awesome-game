@@ -1,10 +1,12 @@
 using System.Linq;
-using Awesomegame;
 using Godot;
 
 public partial class enemy : npc
 {
 	[Export] protected override float Speed { get; set; } = 600;
+
+	private CharacterBody2D oldTarget;
+	private double elapsed = 0;
 
 	public override void _Ready()
 	{
@@ -14,9 +16,22 @@ public partial class enemy : npc
 
 	public override void _PhysicsProcess(double delta)
 	{
-		var targetPosition = GetTarget().Position;
+		var targetPosition = GetTargetHelper(delta).Position;
 
 		Move((targetPosition - Position).Normalized());
+	}
+
+	private CharacterBody2D GetTargetHelper(double delta)
+	{
+		if (oldTarget == null || elapsed >= 2)
+		{
+			oldTarget = GetTarget();
+			elapsed = 0;
+		}
+
+		elapsed += delta;
+
+		return oldTarget;
 	}
 
 	protected override CharacterBody2D GetTarget()
@@ -29,8 +44,8 @@ public partial class enemy : npc
 		return targets.MaxBy(x =>
 		{
 			var p = x as CharacterBody2D;
-			return (p.Position.X - Position.X) * (p.Position.X - Position.X) -
-			       (p.Position.Y - Position.Y) * (p.Position.Y - Position.Y);
+			return (p.Transform.X.X - Transform.X.X) * (p.Transform.X.X - Transform.X.X) -
+			       (p.Transform.Y.Y - Transform.Y.Y) * (p.Transform.Y.Y - Transform.Y.Y);
 		}) as CharacterBody2D;
 	}
 }

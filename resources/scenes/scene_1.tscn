@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://brt341wfoohh3"]
 
-[ext_resource type="TileSet" uid="uid://c03uuhqidsif7" path="res://resources/scenes/walls_and_floor.tres" id="1_u8ihc"]
+[ext_resource type="TileSet" uid="uid://c80svru2binmb" path="res://resources/scenes/walls_and_floor.tres" id="1_u8ihc"]
 
 [node name="scene1" type="Node2D"]
 position = Vector2(343.283, 422.506)
