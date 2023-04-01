@@ -23,12 +23,12 @@ layer_0/tile_data = PackedInt32Array(-131076, 131079, 1, -131075, 131079, 1, -13
 [node name="player" parent="." instance=ExtResource("3_vjknm")]
 position = Vector2(-40.9999, 154)
 
-[node name="zomni" parent="." instance=ExtResource("5_k4vvb")]
-position = Vector2(1299, 652)
-
 [node name="movement" parent="." instance=ExtResource("3_vjknm")]
 position = Vector2(-390, 116)
 isPlayer1 = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.2, 0.2)
+
+[node name="movement2" parent="." instance=ExtResource("5_k4vvb")]
+position = Vector2(516, 54)
