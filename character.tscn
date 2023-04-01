@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://cg0jhapvrumx5"]
+[gd_scene load_steps=2 format=3 uid="uid://cg0jhapvrumx5"]
+
+[ext_resource type="Script" path="res://character.cs" id="1_tgnhw"]
 
 [node name="movement" type="CharacterBody2D"]
+script = ExtResource("1_tgnhw")
 
 [node name="collision" type="CollisionShape2D" parent="."]
 

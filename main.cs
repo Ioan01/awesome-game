@@ -13,13 +13,10 @@ public partial class main : Node2D
 
 	public override void _Ready()
 	{
-		var rid = NavigationServer2D.MapCreate();
-		region2D = FindChild("nav") as NavigationRegion2D;
-		
-		NavigationServer2D.RegionSetMap(region2D.GetRegionRid(),rid);
-		
-
-
+		foreach (var node in GetTree().GetNodesInGroup("npcs"))
+		{
+			(node as character).OnPlayerAdded(FindChild("player") as player);
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

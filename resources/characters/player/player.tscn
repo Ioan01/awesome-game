@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://cl7u6dckam0r1"]
 
-[ext_resource type="Script" path="res://movement.cs" id="1_0yhvs"]
+[ext_resource type="Script" path="res://player.cs" id="1_0tvsw"]
 [ext_resource type="Texture2D" uid="uid://ch8vbyjwpiyrr" path="res://resources/characters/player/idle/wizzard_m_idle_anim_f0.png" id="2_0etm5"]
 [ext_resource type="Texture2D" uid="uid://c2gp2he5nb86y" path="res://resources/characters/player/idle/wizzard_m_idle_anim_f1.png" id="2_l0sfx"]
 [ext_resource type="Texture2D" uid="uid://d4wxco2imdy1" path="res://resources/characters/player/idle/wizzard_m_idle_anim_f2.png" id="3_6wkcn"]
@@ -53,7 +53,7 @@ size = Vector2(12, 18)
 [node name="movement" type="CharacterBody2D"]
 texture_filter = 1
 scale = Vector2(10, 10)
-script = ExtResource("1_0yhvs")
+script = ExtResource("1_0tvsw")
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_oadbq")
