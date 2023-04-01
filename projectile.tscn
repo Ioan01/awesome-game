@@ -45,5 +45,5 @@ position = Vector2(111, 219)
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_24v5l")
 animation = &"new_animation_5"
-frame_progress = 0.335923
+frame_progress = 0.291404
 script = ExtResource("2_8rpsa")
