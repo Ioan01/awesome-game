@@ -10,6 +10,8 @@ public partial class enemy : npc
 
 	public override void _Ready()
 	{
+		sprite2D = FindChild("animations") as AnimatedSprite2D;
+		collision = FindChild("collision") as CollisionShape2D;
 		AddToGroup("enemies");
 		base._Ready();
 	}

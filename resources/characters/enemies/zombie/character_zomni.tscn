@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ctu7asquj3k5n"]
+[gd_scene load_steps=13 format=3 uid="uid://ctu7asquj3k5n"]
 
 [ext_resource type="Script" path="res://resources/characters/enemies/enemy.cs" id="1_my2ke"]
 [ext_resource type="Texture2D" uid="uid://dhs2fxw1k6px0" path="res://resources/characters/enemies/zombie/idle/big_zombie_idle_anim_f0.png" id="2_m05cb"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dw7n12811xmea" path="res://resources/characters/enemies/zombie/run/big_zombie_run_anim_f1.png" id="7_a2x70"]
 [ext_resource type="Texture2D" uid="uid://bicbmqvod27ql" path="res://resources/characters/enemies/zombie/run/big_zombie_run_anim_f2.png" id="8_0c0po"]
 [ext_resource type="Texture2D" uid="uid://cgtxnkmvtrm5o" path="res://resources/characters/enemies/zombie/run/big_zombie_run_anim_f3.png" id="9_5ssbc"]
+[ext_resource type="Texture2D" uid="uid://be1codkky7pyn" path="res://resources/characters/skelet_idle_anim_f2.png" id="10_nbe0f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s2glb"]
 size = Vector2(19.2, 26.8)
@@ -60,6 +61,11 @@ position = Vector2(-0.3, 3.4)
 shape = SubResource("RectangleShape2D_s2glb")
 
 [node name="animation" type="AnimatedSprite2D" parent="."]
+z_index = 1
 sprite_frames = SubResource("SpriteFrames_gnida")
 animation = &"run"
 frame_progress = 0.396078
+
+[node name="skull" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("10_nbe0f")

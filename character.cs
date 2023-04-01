@@ -4,7 +4,18 @@ namespace Awesomegame;
 
 public abstract partial class character : CharacterBody2D
 {
-    public virtual int Hp { get; set; } = 5;
+    private bool _isDead = false;
+    private int _hp = 5;
+
+    public virtual int Hp
+    {
+        get => _hp;
+        set
+        {
+            _hp = value;
+            TookDamage();
+        }
+    }
 
     [Export]
     protected abstract float Speed { get; set; }
@@ -18,8 +29,31 @@ public abstract partial class character : CharacterBody2D
     protected virtual bool wasFlipped { get; set; }
 
     protected virtual bool isFacingRight { get; set; } = true;
+    protected void TookDamage()
+    {
+        if (Hp <= 0)
+        {
+            foreach (var child in GetChildren())
+            {
+                if (child.Name != "skull")
+                {
+                    if (child is AnimatedSprite2D sprite)
+                        sprite.Visible = false;
+                    else if (child is Sprite2D spr)
+                        spr.Visible = false;
+                }
+
+                else if (child is Sprite2D s) {s.Visible = true; GD.Print(s.Name);}
+            }
+            
+            collision.SetDeferred("disabled", true);
+
+            _isDead = true;
+        }
+    }
     protected void Move(Vector2 direction)
     {
+        if (_isDead) return;
         Vector2 velocity = Velocity;
 		
         // Get the input direction and handle the movement/deceleration.

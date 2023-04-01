@@ -12,14 +12,12 @@ public partial class player : character
 	{
 		get => _hp;
 		set
-		{
-			_hp = value;
-			
-			if (!isPlayer1)
-				state.Player1Hearts = value;
-			else
-				state.Player2Hearts = value;
-		}
+        {
+        	_hp = value;
+            if (!isPlayer1) state.Player1Hearts = value;
+            else state.Player2Hearts = value;
+        	TookDamage();
+        }
 	}
 
 	private PointLight2D light2D;
@@ -87,5 +85,8 @@ public partial class player : character
 			elapsed = 0;
 			
 		}
+		
 	}
+	
+	
 }

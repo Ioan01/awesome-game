@@ -4,10 +4,15 @@ namespace Awesomegame;
 
 public partial class GlobalState : Node2D
 {
+	private static int maxHp = 5;
+
+	public item hoveredItem { get; set; }= null;
+	
+	
 	private int _gold = 0;
 	private float _darkness;
-	private int _player1hp = 5;
-	private int _player2hp = 5;
+	private int _player1hp = maxHp;
+	private int _player2hp = maxHp;
 
 	public bool Sane { get; set; }
 
