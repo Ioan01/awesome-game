@@ -73,8 +73,6 @@ energy = 0.0
 texture = ExtResource("10_01gnf")
 texture_scale = 0.1
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-
 [node name="WeaponGreenMagicStaff" type="Sprite2D" parent="."]
 position = Vector2(6.5, 5)
 scale = Vector2(0.3875, 0.62)

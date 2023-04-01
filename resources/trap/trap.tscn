@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://d0qre3r2kgl7"]
+
+[ext_resource type="Texture2D" uid="uid://dhx10u1htg1vb" path="res://resources/trap/floor_spikes_anim_f0.png" id="1_i5yyc"]
+[ext_resource type="Texture2D" uid="uid://cl6oscmoky1tc" path="res://resources/trap/floor_spikes_anim_f1.png" id="2_lkxkt"]
+[ext_resource type="Texture2D" uid="uid://bx5n3h1qr00mn" path="res://resources/trap/floor_spikes_anim_f2.png" id="3_lyajp"]
+[ext_resource type="Texture2D" uid="uid://cjmbj618ipgmd" path="res://resources/trap/floor_spikes_anim_f3.png" id="4_5lert"]
+[ext_resource type="Script" path="res://resources/trap/trap.cs" id="5_n413m"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5r41y"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("1_i5yyc")
+}, {
+"duration": 2.0,
+"texture": ExtResource("2_lkxkt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lyajp")
+}, {
+"duration": 8.0,
+"texture": ExtResource("4_5lert")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uoiob"]
+size = Vector2(15.9, 16.3)
+
+[node name="trap" type="AnimatedSprite2D"]
+texture_filter = 1
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_5r41y")
+frame_progress = 0.553722
+script = ExtResource("5_n413m")
+
+[node name="area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area"]
+position = Vector2(-0.150001, 0.15)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_uoiob")

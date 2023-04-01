@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bxubqxh1hcc7x"]
+[gd_scene load_steps=12 format=3 uid="uid://bxubqxh1hcc7x"]
 
 [ext_resource type="Script" path="res://GlobalState.cs" id="1_d0xmn"]
 [ext_resource type="TileSet" uid="uid://c80svru2binmb" path="res://resources/scenes/walls_and_floor.tres" id="1_lldcn"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dml4k6eldhui" path="res://resources/characters/player/ui_heart_full.png" id="6_v8heb"]
 [ext_resource type="Texture2D" uid="uid://ch8vbyjwpiyrr" path="res://resources/characters/player/idle/wizzard_m_idle_anim_f0.png" id="7_3tu4h"]
 [ext_resource type="PackedScene" uid="uid://c2pkid0ok4ewc" path="res://resources/items/torch/torch.tscn" id="7_uudc8"]
+[ext_resource type="PackedScene" uid="uid://d0qre3r2kgl7" path="res://resources/trap/trap.tscn" id="10_wfn4r"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jgbya"]
 font_size = 100
@@ -121,3 +122,6 @@ texture_filter = 1
 position = Vector2(-2710, -1353)
 scale = Vector2(23.5, 17.3214)
 texture = ExtResource("7_3tu4h")
+
+[node name="trap" parent="." instance=ExtResource("10_wfn4r")]
+position = Vector2(78, -82)
