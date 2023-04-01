@@ -1,23 +1,23 @@
 using Godot;
 using System;
 
-public partial class projectile : AnimatedSprite2D
+public partial class projectile : Area2D
 {
-	[Signal]
-	public delegate void explodedEventHandler(Vector2 origin);
+    [Signal]
+    public delegate void explodedEventHandler(Vector2 origin);
 
-	private const float speed = 1000;
-	public Vector2 direction { get; set; }
+    private const float speed = 1000;
+    public Vector2 direction { get; set; }
 
-	public override void _PhysicsProcess(double delta)
-	{
-		LookAt(Transform.Origin + direction);
-		Position += direction * speed * (float)delta;
-	}
+    public override void _PhysicsProcess(double delta)
+    {
+        LookAt(GlobalTransform.Origin + direction);
+        Position += direction * speed * (float)delta;
+    }
 
-	void onProjectileBodyEntered(CharacterBody2D body)
-	{
-		EmitSignal("explodedEventHandler", Transform.Origin);
-		QueueFree();
-	}
+    void onProjectileBodyEntered(CharacterBody2D body)
+    {
+        EmitSignal("explodedEventHandler", GlobalTransform.Origin);
+        QueueFree();
+    }
 }

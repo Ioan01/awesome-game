@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://rworbtoq2ish"]
+[gd_scene load_steps=9 format=3 uid="uid://rworbtoq2ish"]
 
 [ext_resource type="Texture2D" uid="uid://bs7bn73bv4gbh" path="res://resources/projectiles/flames/flame_horizontal.png" id="1_bcosj"]
 [ext_resource type="Script" path="res://projectile.cs" id="2_8rpsa"]
@@ -39,11 +39,20 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="projectile" type="AnimatedSprite2D"]
-texture_filter = 1
-position = Vector2(111, 219)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qi7rw"]
+size = Vector2(8, 6)
+
+[node name="projectile" type="Area2D"]
 scale = Vector2(10, 10)
+script = ExtResource("2_8rpsa")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_24v5l")
 animation = &"new_animation_5"
 frame_progress = 0.291404
-script = ExtResource("2_8rpsa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-9.23872e-08, -2.50339e-07)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_qi7rw")
