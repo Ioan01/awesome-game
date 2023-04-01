@@ -13,7 +13,7 @@ public partial class npc : character
 	
 	public override void _PhysicsProcess(double delta)
 	{
-		Move(GetTarget().Position);
+		Move(GetTarget().Position, (float) delta);
 	}
 
 	protected virtual CharacterBody2D GetTarget()

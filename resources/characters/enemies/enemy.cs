@@ -1,4 +1,5 @@
 using System.Linq;
+using Awesomegame;
 using Godot;
 
 public partial class enemy : npc
@@ -20,7 +21,7 @@ public partial class enemy : npc
 	{
 		var targetPosition = GetTargetHelper(delta).Position;
 
-		Move((targetPosition - Position).Normalized());
+		Move((targetPosition - Position).Normalized(), (float)delta);
 	}
 
 	private CharacterBody2D GetTargetHelper(double delta)
@@ -43,7 +44,11 @@ public partial class enemy : npc
 		npcs.ExceptWith(GetTree().GetNodesInGroup("enemies"));
 		targets.UnionWith(npcs);
 		
-		return targets.MaxBy(x =>
+		return targets.Where(x =>
+		{
+			var p = x as character;
+			return !p.IsDead;
+		}).MaxBy(x =>
 		{
 			var p = x as CharacterBody2D;
 			return (p.Transform.X.X - Transform.X.X) * (p.Transform.X.X - Transform.X.X) -

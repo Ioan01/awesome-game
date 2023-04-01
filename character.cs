@@ -4,7 +4,7 @@ namespace Awesomegame;
 
 public abstract partial class character : CharacterBody2D
 {
-    private bool _isDead = false;
+    public bool IsDead { get; set; } = false;
     private int _hp = 5;
 
     public virtual int Hp
@@ -16,6 +16,9 @@ public abstract partial class character : CharacterBody2D
             TookDamage();
         }
     }
+
+    private Vector2 knockBackVelocity = Vector2.Zero;
+    private float sinceKnockback;
 
     [Export]
     protected abstract float Speed { get; set; }
@@ -48,12 +51,19 @@ public abstract partial class character : CharacterBody2D
             
             collision.SetDeferred("disabled", true);
 
-            _isDead = true;
+            IsDead = true;
         }
     }
-    protected void Move(Vector2 direction)
+
+    public void KnockBack(Vector2 direction)
     {
-        if (_isDead) return;
+        knockBackVelocity = direction * 1000;
+        sinceKnockback = 0;
+    }
+    
+    protected void Move(Vector2 direction, float delta)
+    {
+        if (IsDead) return;
         Vector2 velocity = Velocity;
 		
         // Get the input direction and handle the movement/deceleration.
@@ -61,8 +71,7 @@ public abstract partial class character : CharacterBody2D
 		
         if (direction != Vector2.Zero)
         {
-            velocity.X = direction.X * Speed;
-            velocity.Y = direction.Y * Speed;
+            velocity = (knockBackVelocity != Vector2.Zero) ? knockBackVelocity : direction * Speed;
 
             if (direction.X < 0)
             {
@@ -80,10 +89,18 @@ public abstract partial class character : CharacterBody2D
         }
         else
         {
-            velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-            velocity.Y = Mathf.MoveToward(Velocity.Y, 0, Speed);
+            velocity.X = (knockBackVelocity != Vector2.Zero) ? knockBackVelocity.X : Mathf.MoveToward(Velocity.X, 0, Speed);
+            velocity.Y = (knockBackVelocity != Vector2.Zero) ? knockBackVelocity.Y : Mathf.MoveToward(Velocity.Y, 0, Speed);
 			
             sprite2D?.Play("idle");
+        }
+
+        sinceKnockback += delta;
+
+        if (sinceKnockback > 0.25f)
+        {
+            knockBackVelocity = Vector2.Zero;
+            sinceKnockback = 0;
         }
 
         Velocity = velocity;

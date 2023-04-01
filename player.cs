@@ -57,7 +57,9 @@ public partial class player : character
 		Vector2 direction = isPlayer1
 			? Input.GetVector("left", "right", "up", "down")
 			: Input.GetVector("left_2", "right_2", "up_2", "down_2");
-		Move(direction);
+		Move(direction, (float)delta);
+
+		if (IsDead) return;
 		
 		if (Input.IsActionPressed("shoot") && isPlayer1 && elapsed >= 0.75f / GlobalState.AttackSpeedModifier / GlobalState.SpeedModifier)
 		{

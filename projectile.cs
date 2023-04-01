@@ -16,6 +16,7 @@ public partial class projectile : Area2D
     {
         if (GlobalTransform == node.GlobalTransform || node is not character c) return;
         c.Hp--;
+        c.KnockBack(direction);
         QueueFree();
     }
 }

@@ -16,7 +16,11 @@ public partial class trap : AnimatedSprite2D
 		FrameChanged += () =>
 		{
 			if (Frame == 3)
-				characters.ForEach(character => character.Hp -= 2);
+				characters.ForEach(character =>
+				{
+					character.Hp -= 2;
+					character.KnockBack((Vector2.Down + Vector2.Right).Normalized());
+				});
 		};
 		area2D = FindChild("area") as Area2D;
 		area2D.BodyEntered += body =>
