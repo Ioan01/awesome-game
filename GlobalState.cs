@@ -1,8 +1,23 @@
+using Godot;
+
 namespace Awesomegame;
 
-public static class GlobalState
+public partial class GlobalState : Node2D
 {
-	public static bool Sane { get; set; }
+	private int _gold = 0;
+	
+	public  bool Sane { get; set; }
 
-	public static float SpeedModifier { get; set; } = 1f;
+	public  float SpeedModifier { get; set; } = 1f;
+
+	public  int Gold
+	{
+		get => _gold;
+		set
+		{
+			_gold = value;
+			var label = GetTree().CurrentScene.FindChild("gold_l") as Label;
+			label.Text = Gold.ToString();
+		}
+	}
 }

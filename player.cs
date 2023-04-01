@@ -27,7 +27,6 @@ public partial class player : character
 		Vector2 direction = isPlayer1
 			? Input.GetVector("left", "right", "up", "down")
 			: Input.GetVector("left_2", "right_2", "up_2", "down_2");
-		GD.Print(direction);
 		Move(direction);
 	}
 }
