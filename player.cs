@@ -23,6 +23,9 @@ public partial class player : character
 		light2D = FindChild("light") as PointLight2D;
 		
 		sprite2D.Play("idle");
+
+		if (!isPlayer1)
+			sprite2D.Modulate = new Color("e68d00");
 		
 		AddToGroup("players");
 	}
