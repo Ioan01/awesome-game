@@ -1,48 +1,56 @@
-using Godot;
-using System.Collections.Generic;
-using Awesomegame;
+﻿using Godot;
+
+namespace Awesomegame;
 
 public partial class character : CharacterBody2D
 {
-	public const float Speed = 300.0f;
+    [Export]
+    protected virtual float Speed { get; set; } = 300.0f;
+    
+    protected virtual AnimatedSprite2D sprite2D { get; set; } = null!;
 
-	protected List<player> players = new List<player>();
+    protected virtual  CollisionShape2D collision { get; set; } = null!;
 
-	public override void _Ready()
-	{
-		AddToGroup("characters");
-	}
+    protected virtual bool isFlipped { get; set; }
 
-	public void OnPlayerAdded(player player)
-	{
-		players.Add(player);
-	}
+    protected virtual bool wasFlipped { get; set; }
 
-	public void OnPlayerRemoved(player player)
-	{
-		players.Remove(player);
-	}
-	
-	public override void _PhysicsProcess(double delta)
-	{
-		Vector2 direction = Vector2.Zero;
+    protected virtual bool isFacingRight { get; set; } = true;
+    protected void Move(Vector2 direction)
+    {
+        Vector2 velocity = Velocity;
 		
+        // Get the input direction and handle the movement/deceleration.
+        // As good practice, you should replace UI actions with custom gameplay actions.
 		
-		Vector2 velocity = Velocity;
+        if (direction != Vector2.Zero)
+        {
+            velocity.X = direction.X * Speed;
+            velocity.Y = direction.Y * Speed;
 
-		
-		if (direction != Vector2.Zero)
-		{
-			velocity.X = direction.X * Speed * GlobalState.SpeedModifier;
-			velocity.Y = direction.Y * Speed * GlobalState.SpeedModifier;
-		}
-		else
-		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed * GlobalState.SpeedModifier);
-			velocity.Y = Mathf.MoveToward(Velocity.Y, 0, Speed * GlobalState.SpeedModifier);
-		}
+            if (direction.X < 0)
+            {
+                isFlipped = true;
+            }
+            else isFlipped = false;
 
-		Velocity = velocity;
-		MoveAndSlide();
-	}
+            if (isFlipped != wasFlipped)
+                Scale = new Vector2(-1 * Scale.X, Scale.Y);
+
+			
+            wasFlipped = isFlipped;
+			
+            sprite2D?.Play("run");
+        }
+        else
+        {
+            velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+            velocity.Y = Mathf.MoveToward(Velocity.Y, 0, Speed);
+			
+            sprite2D?.Play("idle");
+        }
+
+        Velocity = velocity;
+        MoveAndSlide();
+    }
 }

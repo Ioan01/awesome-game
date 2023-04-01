@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class main : Node2D
 {
@@ -9,14 +8,6 @@ public partial class main : Node2D
 	public override void _EnterTree()
 	{
 		
-	}
-
-	public override void _Ready()
-	{
-		foreach (var node in GetTree().GetNodesInGroup("characters"))
-		{
-			(node as character).OnPlayerAdded(FindChild("player") as player);
-		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

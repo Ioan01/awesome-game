@@ -1,12 +1,10 @@
-using Godot;
-using System;
 using System.Linq;
+using Awesomegame;
+using Godot;
 
-public partial class enemy : character
+public partial class enemy : npc
 {
-	public const float Speed = 300.0f;
-
-	private player[] players;
+	[Export] protected override float Speed { get; set; } = 600;
 
 	public override void _Ready()
 	{
@@ -16,24 +14,23 @@ public partial class enemy : character
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Vector2 velocity = Velocity;
+		var targetPosition = GetTarget().Position;
 
-		Vector2 direction = Vector2.Zero;
+		Move((targetPosition - Position).Normalized());
+	}
+
+	protected override CharacterBody2D GetTarget()
+	{
+		var targets = GetTree().GetNodesInGroup("players").ToHashSet();
+		var npcs = GetTree().GetNodesInGroup("npcs").ToHashSet();
+		npcs.ExceptWith(GetTree().GetNodesInGroup("enemies"));
+		targets.UnionWith(npcs);
 		
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
-		if (direction != Vector2.Zero)
+		return targets.MaxBy(x =>
 		{
-			velocity.X = direction.X * Speed;
-			velocity.Y = direction.Y * Speed;
-		}
-		else
-		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-			velocity.X = Mathf.MoveToward(Velocity.Y, 0, Speed);
-		}
-
-		Velocity = velocity;
-		MoveAndSlide();
+			var p = x as CharacterBody2D;
+			return (p.Position.X - Position.X) * (p.Position.X - Position.X) -
+			       (p.Position.Y - Position.Y) * (p.Position.Y - Position.Y);
+		}) as CharacterBody2D;
 	}
 }
