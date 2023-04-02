@@ -76,13 +76,52 @@ shape = SubResource("CircleShape2D_3gtb0")
 position = Vector2(152, -1443)
 
 [node name="Node2D3" type="Node2D" parent="map/spawner"]
-position = Vector2(3586, 91)
+position = Vector2(2287, 236)
 
 [node name="Node2D4" type="Node2D" parent="map/spawner"]
-position = Vector2(-2632, 243)
+position = Vector2(-1618, 175)
 
 [node name="Node2D5" type="Node2D" parent="map/spawner"]
 position = Vector2(-2632, 2290)
+
+[node name="items" type="Node2D" parent="map"]
+position = Vector2(-584, -1152)
+
+[node name="Node2D" type="Node2D" parent="map/items"]
+position = Vector2(-1539, 502)
+
+[node name="Node2D2" type="Node2D" parent="map/items"]
+position = Vector2(3357, 149)
+
+[node name="Node2D3" type="Node2D" parent="map/items"]
+position = Vector2(3411, 1803)
+
+[node name="Node2D4" type="Node2D" parent="map/items"]
+position = Vector2(-820, 2088)
+
+[node name="Node2D5" type="Node2D" parent="map/items"]
+position = Vector2(787, 2407)
+
+[node name="Node2D6" type="Node2D" parent="map/items"]
+position = Vector2(2252, 651)
+
+[node name="Node2D7" type="Node2D" parent="map/items"]
+position = Vector2(-840, 970)
+
+[node name="Node2D8" type="Node2D" parent="map/items"]
+position = Vector2(-230, 414)
+
+[node name="Node2D9" type="Node2D" parent="map/items"]
+position = Vector2(1736, 278)
+
+[node name="Node2D10" type="Node2D" parent="map/items"]
+position = Vector2(2150, 2149)
+
+[node name="Node2D11" type="Node2D" parent="map/items"]
+position = Vector2(1255, 1023)
+
+[node name="Node2D12" type="Node2D" parent="map/items"]
+position = Vector2(1255, 1023)
 
 [node name="item" parent="." instance=ExtResource("4_bk3nw")]
 position = Vector2(392, 222)

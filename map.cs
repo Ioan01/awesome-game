@@ -17,7 +17,10 @@ public partial class map : Node2D
 
 	private static string[] items = new[]
 	{
-		"",
+		"res://resources/items/potions/health.tscn",
+		"res://resources/items/potions/size.tscn",
+		"res://resources/items/candle.tscn",
+		"res://resources/items/coin/coin.tscn"
 	};
 	
 	
@@ -27,7 +30,23 @@ public partial class map : Node2D
 	private int numberOfMaps = 2;
 	private double elapsed;
 
+	private void spawnItems()
+	{
+		var spawn = FindChild("items");
 
+		if (spawn != null)
+		{
+			var positions = spawn.GetChildren().Select(node => (node as Node2D).GlobalPosition).ToList();
+			for (int i = 0; i < Random.Shared.Next(5); i++)
+			{
+				var enemy = GD.Load<PackedScene>(items[Random.Shared.Next(items.Length)]).Instantiate() as item;
+				enemy.GlobalPosition = positions[Random.Shared.Next(positions.Count)];
+				AddChild(enemy);
+				
+			}
+		}
+	}
+	
 	private void spawn()
 	{
 		var spawn = FindChild("spawner");
@@ -58,6 +77,7 @@ public partial class map : Node2D
 
 		wave = GetTree().CurrentScene.FindChild("wave") as Label;
 		spawn();
+		spawnItems();
 		
 		
     }
@@ -74,6 +94,7 @@ public partial class map : Node2D
 		    elapsed = 0;
 		    state.Enemeies = (int)(state.Enemeies * 1.25);
 		    spawn();
+		    spawnItems();
 	    }
     }
 
