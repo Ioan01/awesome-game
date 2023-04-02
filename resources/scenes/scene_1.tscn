@@ -44,4 +44,18 @@ position = Vector2(-437, 2482)
 position = Vector2(40, -4)
 shape = SubResource("CircleShape2D_gclnf")
 
+[node name="spawner" type="Node2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="spawner"]
+position = Vector2(819, -186)
+
+[node name="Node2D2" type="Node2D" parent="spawner"]
+position = Vector2(3389, 1108)
+
+[node name="Node2D3" type="Node2D" parent="spawner"]
+position = Vector2(1149, 2493)
+
+[node name="Node2D4" type="Node2D" parent="spawner"]
+position = Vector2(-1168, 1000)
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

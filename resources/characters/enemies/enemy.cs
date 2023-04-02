@@ -15,13 +15,17 @@ public partial class enemy : npc
 		collision = FindChild("collision") as CollisionShape2D;
 		AddToGroup("enemies");
 		base._Ready();
+
+		var nodes = GetTree().GetNodesInGroup("players");
+
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		var targetPosition = GetTargetHelper(delta).Position;
+		var targetPosition = GetTargetHelper(delta)?.Position;
 
-		Move((targetPosition - Position).Normalized(), (float)delta);
+		if (targetPosition.HasValue)
+			Move((targetPosition - Position).Value.Normalized(), (float)delta);
 	}
 
 	private CharacterBody2D GetTargetHelper(double delta)

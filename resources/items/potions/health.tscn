@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfjnje1l3s65p"]
+[gd_scene load_steps=5 format=3 uid="uid://nk46g4w2axnb"]
 
-[ext_resource type="Script" path="res://resources/items/potions/size.cs" id="1_j4qxp"]
-[ext_resource type="Texture2D" uid="uid://dn1eufws3qk3s" path="res://resources/items/potions/flask_blue.png" id="2_1mmhd"]
+[ext_resource type="Script" path="res://resources/items/potions/health.cs" id="1_7asqb"]
+[ext_resource type="Texture2D" uid="uid://3grol23notqp" path="res://resources/items/potions/flask_red.png" id="1_e8aog"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kspjo"]
 size = Vector2(12.8, 15.25)
@@ -10,7 +10,7 @@ size = Vector2(12.8, 15.25)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_1mmhd")
+"texture": ExtResource("1_e8aog")
 }],
 "loop": true,
 "name": &"default",
@@ -19,7 +19,7 @@ animations = [{
 
 [node name="item" type="Area2D"]
 scale = Vector2(10, 10)
-script = ExtResource("1_j4qxp")
+script = ExtResource("1_7asqb")
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(-0.3, 1.425)

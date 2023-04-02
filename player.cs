@@ -34,6 +34,7 @@ public partial class player : character
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public override void _Ready()
 	{
+		
 		state = GetTree().CurrentScene.FindChild("globals") as GlobalState;
 		sprite2D = FindChild("animations") as AnimatedSprite2D;
 		collision = FindChild("collision") as CollisionShape2D;
@@ -42,7 +43,12 @@ public partial class player : character
 		sprite2D.Play("idle");
 
 		if (!isPlayer1)
+		{
+			_hp = state.Player2Hearts;
 			sprite2D.Modulate = new Color("e68d00");
+
+		}
+		else _hp = state.Player1Hearts;
 		
 		AddToGroup("players");
 	}
@@ -98,6 +104,33 @@ public partial class player : character
 		}
 		
 	}
-	
+
+	public override void _Process(double delta)
+	{
+		if (isPlayer1)
+			if (Input.IsActionPressed("pickup"))
+			{
+				if (state.hoveredItem != null)
+				{
+					if (state.Gold >= state.hoveredItem.Price)
+					{
+						state.hoveredItem.OnBuy(this);
+						state.Gold -= state.hoveredItem.Price;
+					}
+				}
+			}
+		else 
+			if (Input.IsActionPressed("pickup_2"))
+			{
+				if (state.hoveredItem != null)
+				{
+					if (state.Gold >= state.hoveredItem.Price)
+					{
+						state.hoveredItem.OnBuy(this);
+						state.Gold -= state.hoveredItem.Price;
+					}
+				}
+			}
+	}
 	
 }
