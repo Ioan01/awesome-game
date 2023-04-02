@@ -78,6 +78,8 @@ public partial class player : character
 		{
 			var b = GD.Load<PackedScene>("res://projectile.tscn").Instantiate() as projectile;
 			Owner.AddChild(b);
+			(b.FindChild("sprite") as AnimatedSprite2D).Scale *= GlobalState.SizeModifier;
+			(b.FindChild("CollisionShape2D") as CollisionShape2D).Scale *= GlobalState.SizeModifier;	
 			b.GlobalTransform = GlobalTransform;
 			b.direction = (GetGlobalMousePosition() - GlobalPosition).Normalized();
 
@@ -93,6 +95,8 @@ public partial class player : character
 			if (b != null)
 			{
 				Owner.AddChild(b);
+				(b.FindChild("sprite") as AnimatedSprite2D).Scale *= GlobalState.SizeModifier;
+				(b.FindChild("CollisionShape2D") as CollisionShape2D).Scale *= GlobalState.SizeModifier;
 				b.GlobalTransform = GlobalTransform;
 				b.direction = ctrlrAimDir.Normalized();
 			}

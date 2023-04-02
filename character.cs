@@ -44,7 +44,7 @@ public abstract partial class character : CharacterBody2D
             GetTree().CurrentScene.FindChild("map").AddChild(coin);
 
             if (this is enemy)
-                GlobalState.SpeedModifier += 0.01f;
+                GlobalState.SpeedModifier += 0.05f;
         }
     }
 

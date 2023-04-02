@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Awesomegame;
 
 public partial class size : item
 {
@@ -20,5 +21,6 @@ public partial class size : item
 	public override void OnBuy(Node player)
 	{
 		QueueFree();
+		GlobalState.SizeModifier += 0.2f;
 	}
 }
