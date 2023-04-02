@@ -78,7 +78,8 @@ public partial class map : Node2D
 		wave = GetTree().CurrentScene.FindChild("wave") as Label;
 		spawn();
 		spawnItems();
-		
+		state.Enemeies = 10;
+
 		
     }
 
@@ -92,7 +93,7 @@ public partial class map : Node2D
 		    state.Wave += 1;
 		    wave.Text = $"Wave {state.Wave}";
 		    elapsed = 0;
-		    state.Enemeies = (int)(state.Enemeies * 1.25);
+		    state.Enemeies = (int)(state.Enemeies * 1.5);
 		    spawn();
 		    spawnItems();
 	    }
