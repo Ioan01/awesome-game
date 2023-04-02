@@ -8,6 +8,7 @@ public partial class npc : character
 
 	public override void _Ready()
 	{
+		base._Ready();
 		AddToGroup("npcs");
 	}
 	

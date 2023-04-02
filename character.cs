@@ -1,3 +1,4 @@
+using System.IO;
 using System.Linq;
 using Godot;
 
@@ -5,6 +6,25 @@ namespace Awesomegame;
 
 public abstract partial class character : CharacterBody2D
 {
+    private static AudioStream enemyHit;
+    private static AudioStream playerHit;
+    
+    
+    
+    public override void _Ready()
+    {
+        player = new AudioStreamPlayer();
+        enemyHit = GD.Load<AudioStream>("res://sounds/Hurt1.wav");
+        playerHit = GD.Load<AudioStream>("res://sounds/Hurt4.wav");
+        
+        AddChild(player);
+
+
+    }
+
+    protected AudioStreamPlayer player;
+    
+    
     protected int _hp = 5;
 
     public virtual int Hp
@@ -34,6 +54,13 @@ public abstract partial class character : CharacterBody2D
     protected virtual bool isFacingRight { get; set; } = true;
     protected void TookDamage()
     {
+        if (player != null)
+        {
+            if (this is enemy)
+                player.Stream = character.enemyHit;
+            else player.Stream = character.playerHit;
+        }
+        
         if (Hp <= 0)
         {
 
@@ -57,6 +84,8 @@ public abstract partial class character : CharacterBody2D
 
             if (this is enemy)
             {
+                
+                
                 GlobalState.SpeedModifier += 0.05f;
                 state.Darkness -= 0.04f;
                 
@@ -111,6 +140,10 @@ public abstract partial class character : CharacterBody2D
                 
             }
         }
+        
+        if (player != null)
+            player.Play();
+
     }
 
     public void KnockBack(Vector2 direction)

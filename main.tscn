@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bxubqxh1hcc7x"]
+[gd_scene load_steps=19 format=3 uid="uid://bxubqxh1hcc7x"]
 
 [ext_resource type="Script" path="res://GlobalState.cs" id="1_d0xmn"]
 [ext_resource type="TileSet" uid="uid://c80svru2binmb" path="res://resources/scenes/walls_and_floor.tres" id="1_lldcn"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c2pkid0ok4ewc" path="res://resources/items/torch/torch.tscn" id="7_uudc8"]
 [ext_resource type="PackedScene" uid="uid://d0qre3r2kgl7" path="res://resources/trap/trap.tscn" id="10_wfn4r"]
 [ext_resource type="PackedScene" uid="uid://ctu7asquj3k5n" path="res://resources/characters/enemies/zombie/character_zomni.tscn" id="12_djky8"]
+[ext_resource type="AudioStream" uid="uid://cdbvq2te38p1j" path="res://sounds/Hurt1.wav" id="13_pc4f2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3gtb0"]
 radius = 127.063
@@ -25,6 +26,8 @@ font_size = 100
 
 [sub_resource type="LabelSettings" id="LabelSettings_kssa5"]
 font_size = 200
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_58uho"]
 
 [node name="world" type="Node2D"]
 
@@ -67,7 +70,7 @@ editor_draw_drag_margin = true
 position = Vector2(1044, 549)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="map/Area2D"]
-position = Vector2(-2, 9)
+position = Vector2(-422, 773)
 shape = SubResource("CircleShape2D_3gtb0")
 
 [node name="spawner" type="Node2D" parent="map"]
@@ -227,5 +230,12 @@ position = Vector2(78, -82)
 
 [node name="movement" parent="." instance=ExtResource("12_djky8")]
 position = Vector2(1078, -111)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+process_material = SubResource("ShaderMaterial_58uho")
+
+[node name="audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_pc4f2")
+autoplay = true
 
 [connection signal="body_entered" from="map/Area2D" to="map" method="_on_area_2d_body_entered"]

@@ -5,6 +5,10 @@ using Godot;
 
 public partial class player : character
 {
+	private static AudioStream attack;
+
+	private static AudioStream dash;
+	
 	private GlobalState state;
 	
 	private int _hp = 5;
@@ -34,7 +38,11 @@ public partial class player : character
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public override void _Ready()
 	{
+		attack = GD.Load<AudioStream>("res://sounds/Laser1.wav");
+		dash = GD.Load<AudioStream>("res://sounds/Ping1.wav");
+
 		
+		base._Ready();
 		state = GetTree().CurrentScene.FindChild("globals") as GlobalState;
 		sprite2D = FindChild("animations") as AnimatedSprite2D;
 		collision = FindChild("collision") as CollisionShape2D;
@@ -70,6 +78,8 @@ public partial class player : character
 		elapsedDash += (float)delta;
 		if (Input.IsActionPressed("dash") && elapsedDash >= 1)
 		{
+			player.Stream = dash;
+			player.Play();
 			KnockBack(direction);
 			elapsedDash = 0;
 		}
@@ -84,6 +94,10 @@ public partial class player : character
 			b.direction = (GetGlobalMousePosition() - GlobalPosition).Normalized();
 
 			elapsed = 0;
+
+
+			player.Stream = attack;
+			player.Play();
 		}
 
 		var ctrlrAimDir = Input.GetVector("shoot_left", "shoot_right", "shoot_up", "shoot_down");
@@ -91,6 +105,8 @@ public partial class player : character
 		if (ctrlrAimDir != Vector2.Zero && !isPlayer1 &&
 			elapsed >= 0.75f / GlobalState.AttackSpeedModifier / GlobalState.SpeedModifier)
 		{
+			player.Stream = attack;
+			player.Play();
 			var b = GD.Load<PackedScene>("res://projectile.tscn").Instantiate() as projectile;
 			if (b != null)
 			{
