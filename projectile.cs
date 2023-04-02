@@ -3,10 +3,18 @@ using Godot;
 
 public partial class projectile : Area2D
 {
+    private static GlobalState state;
+    
     private int enemyCnt = 0;
     
     private const float speed = 1500;
     public Vector2 direction { get; set; }
+
+    public override void _Ready()
+    {
+        if (state is null)
+            state = GetTree().CurrentScene.FindChild("globals") as GlobalState;
+    }
 
     public override void _PhysicsProcess(double delta)
     {
@@ -29,7 +37,7 @@ public partial class projectile : Area2D
             enemyCnt++;
         }
 
-        if (node is not character || enemyCnt == 3)
+        if (node is not character || enemyCnt == (int)(state.Enemeies / 1.5f))
             QueueFree();
     }
 }

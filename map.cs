@@ -43,7 +43,7 @@ public partial class map : Node2D
 				do
 				{
 					pos = new Vector2(Random.Shared.Next(-3000, 3500), Random.Shared.Next(-1400, 2400));
-				} while (pos.X > -2500 && pos.X < 2500 && pos.Y > -2500 && pos.Y < 2500);
+				} while (isTooClose(pos));
 				enemy.Position = pos;
 				AddChild(enemy);
 				
@@ -64,7 +64,7 @@ public partial class map : Node2D
 				do
 				{
 					pos = new Vector2(Random.Shared.Next(-3000, 3500), Random.Shared.Next(-1400, 2400));
-				} while (pos.X > -2500 && pos.X < 2500 && pos.Y > -2500 && pos.Y < 2500);
+				} while (isTooClose(pos));
 				enemy.Position = pos;
 				enemy.AddToGroup("enemies");
 				AddChild(enemy);
@@ -72,13 +72,30 @@ public partial class map : Node2D
 			}
 		}
 	}
-	// Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
-        state = GetTree().CurrentScene.FindChild("globals") as GlobalState;
-        state.Enemeies = 10;
 
-        GD.Print("Loaded");
+	private bool isTooClose(Vector2 v)
+	{
+		var d = 750;
+
+		foreach (var node in GetTree().GetNodesInGroup("players"))
+		{
+			var x = node as player;
+
+			if ((v.X - x.GlobalPosition.X) * (v.X - x.GlobalPosition.X) -
+				(v.Y - x.GlobalPosition.Y) * (v.Y - x.GlobalPosition.Y) < d * d)
+				return true;
+		}
+
+		return false;
+	}
+	
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+		state = GetTree().CurrentScene.FindChild("globals") as GlobalState;
+		state.Enemeies = 10;
+
+		GD.Print("Loaded");
 
 
 		
@@ -87,23 +104,23 @@ public partial class map : Node2D
 		spawn();
 		spawnItems();
 
-    }
+	}
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-    {
-	    elapsed += delta;
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+		elapsed += delta;
 
-	    if (elapsed >= 20 || GetTree().GetNodesInGroup("enemies").Count == 0)
-	    {
-		    state.Wave += 1;
-		    wave.Text = $"Wave {state.Wave}";
-		    elapsed = 0;
-		    state.Enemeies = (int)(state.Enemeies * 2);
-		    spawn();
-		    spawnItems();
-	    }
-    }
+		if (elapsed >= 20 || GetTree().GetNodesInGroup("enemies").Count == 0)
+		{
+			state.Wave += 1;
+			wave.Text = $"Wave {state.Wave}";
+			elapsed = 0;
+			state.Enemeies = (int)(state.Enemeies * 2);
+			spawn();
+			spawnItems();
+		}
+	}
 
 	private void _on_area_2d_body_entered(Node2D body)
 	{
@@ -130,17 +147,17 @@ public partial class map : Node2D
 		// 	}
 	}
 
-    private int getRandomLevel()
-    {
-        Random rnd = new Random();
-        int randomLevel = rnd.Next(1, numberOfMaps + 1);
-        while (state.CurrentLevel == randomLevel)
-        {
-            randomLevel = rnd.Next(1, numberOfMaps + 1);
-        }
-        state.CurrentLevel = randomLevel;
-        return randomLevel;
-    }
+	private int getRandomLevel()
+	{
+		Random rnd = new Random();
+		int randomLevel = rnd.Next(1, numberOfMaps + 1);
+		while (state.CurrentLevel == randomLevel)
+		{
+			randomLevel = rnd.Next(1, numberOfMaps + 1);
+		}
+		state.CurrentLevel = randomLevel;
+		return randomLevel;
+	}
 
 }
 
