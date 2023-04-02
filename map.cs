@@ -36,11 +36,15 @@ public partial class map : Node2D
 
 		if (spawn != null)
 		{
-			var positions = spawn.GetChildren().Select(node => (node as Node2D).GlobalPosition).ToList();
 			for (int i = 0; i < Random.Shared.Next(5); i++)
 			{
 				var enemy = GD.Load<PackedScene>(items[Random.Shared.Next(items.Length)]).Instantiate() as item;
-				enemy.GlobalPosition = positions[Random.Shared.Next(positions.Count)];
+				Vector2 pos;
+				do
+				{
+					pos = new Vector2(Random.Shared.Next(-3000, 3500), Random.Shared.Next(-1400, 2400));
+				} while (pos.X > -2500 && pos.X < 2500 && pos.Y > -2500 && pos.Y < 2500);
+				enemy.Position = pos;
 				AddChild(enemy);
 				
 			}
@@ -53,11 +57,15 @@ public partial class map : Node2D
 
 		if (spawn != null)
 		{
-			var positions = spawn.GetChildren().Select(node => (node as Node2D).GlobalPosition).ToList();
 			for (int i = 0; i < state.Enemeies; i++)
 			{
 				var enemy = GD.Load<PackedScene>(enemies[Random.Shared.Next(enemies.Length)]).Instantiate() as enemy;
-				enemy.GlobalPosition = positions[Random.Shared.Next(positions.Count)];
+				Vector2 pos;
+				do
+				{
+					pos = new Vector2(Random.Shared.Next(-3000, 3500), Random.Shared.Next(-1400, 2400));
+				} while (pos.X > -2500 && pos.X < 2500 && pos.Y > -2500 && pos.Y < 2500);
+				enemy.Position = pos;
 				enemy.AddToGroup("enemies");
 				AddChild(enemy);
 				
@@ -68,7 +76,7 @@ public partial class map : Node2D
     public override void _Ready()
     {
         state = GetTree().CurrentScene.FindChild("globals") as GlobalState;
-        state.Enemeies = 5;
+        state.Enemeies = 10;
 
         GD.Print("Loaded");
 
@@ -78,9 +86,7 @@ public partial class map : Node2D
 		wave = GetTree().CurrentScene.FindChild("wave") as Label;
 		spawn();
 		spawnItems();
-		state.Enemeies = 10;
 
-		
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -88,12 +94,12 @@ public partial class map : Node2D
     {
 	    elapsed += delta;
 
-	    if (elapsed >= 20)
+	    if (elapsed >= 20 || GetTree().GetNodesInGroup("enemies").Count == 0)
 	    {
 		    state.Wave += 1;
 		    wave.Text = $"Wave {state.Wave}";
 		    elapsed = 0;
-		    state.Enemeies = (int)(state.Enemeies * 1.5);
+		    state.Enemeies = (int)(state.Enemeies * 2);
 		    spawn();
 		    spawnItems();
 	    }

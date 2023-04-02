@@ -82,7 +82,7 @@ position = Vector2(2287, 236)
 position = Vector2(-1618, 175)
 
 [node name="Node2D5" type="Node2D" parent="map/spawner"]
-position = Vector2(-2632, 2290)
+position = Vector2(983, 1384)
 
 [node name="items" type="Node2D" parent="map"]
 position = Vector2(-584, -1152)

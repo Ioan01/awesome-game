@@ -56,8 +56,26 @@ public abstract partial class character : CharacterBody2D
             GetTree().CurrentScene.FindChild("map").AddChild(death);
 
             if (this is enemy)
+            {
                 GlobalState.SpeedModifier += 0.05f;
-                GlobalState.SpeedModifier += 0.01f;
+                state.Darkness -= 0.04f;
+                
+                var closeBy = GetTree().GetNodesInGroup("enemies").Where(x =>
+                {
+                    var e = x as enemy;
+                    if ((e.Transform.X.X - Transform.X.X) * (e.Transform.X.X - Transform.X.X) -
+                        (e.Transform.Y.Y - Transform.Y.Y) * (e.Transform.Y.Y - Transform.Y.Y) <= 4)
+                        return true;
+
+                    return false;
+                }).Take(3);
+            
+                foreach (var n in closeBy)
+                {
+                    var x = n as enemy;
+                    x.Hp--;
+                }
+            }
 
             if (GetTree().GetNodesInGroup("players").Count == 0)
             {

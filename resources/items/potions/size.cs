@@ -21,6 +21,6 @@ public partial class size : item
 	public override void OnBuy(Node player)
 	{
 		QueueFree();
-		GlobalState.SizeModifier += 0.2f;
+		GlobalState.SizeModifier += 0.5f;
 	}
 }

@@ -99,11 +99,12 @@ public partial class GlobalState : Node2D
 		hoveredItem = null;
 		Player1Hearts = maxHp;
 		Player2Hearts = maxHp;
-		Gold = 0;
+		Gold = 20;
 		Darkness = 0;
 		SizeModifier = 1f; 
 		SpeedModifier = 1f;
 		AttackSpeedModifier = 1f;
 		Wave = 0;
+		Enemeies = 10;
 	}
 }

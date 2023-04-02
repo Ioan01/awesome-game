@@ -23,7 +23,7 @@ public partial class item : Area2D
 			if (Price > 0)
 			{
 				(GetTree().CurrentScene.FindChild("price") as Label).Visible = true;
-				(GetTree().CurrentScene.FindChild("price") as Label).Text = $"{Name} ${Price}";
+				(GetTree().CurrentScene.FindChild("price") as Label).Text = $"{Name} ${Price}\nPress E to buy!";
 
 				
 				state.hoveredItem = this;
