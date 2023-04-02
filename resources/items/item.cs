@@ -52,7 +52,7 @@ public partial class item : Area2D
 		
 	}
 
-	public virtual void OnBuy()
+	public virtual void OnBuy(Node player)
 	{
 		
 	}

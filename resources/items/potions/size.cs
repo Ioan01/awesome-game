@@ -16,4 +16,9 @@ public partial class size : item
 	{
 		base._Process(delta);
 	}
+
+	public override void OnBuy(Node player)
+	{
+		QueueFree();
+	}
 }

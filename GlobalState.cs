@@ -7,9 +7,10 @@ public partial class GlobalState : Node2D
 	private static int maxHp = 5;
 
 	public item hoveredItem { get; set; }= null;
+
+	public int Enemeies { get; set; } = 10;
 	
-	
-	private int _gold = 0;
+	private int _gold = 20;
 	private float _darkness;
 	private int _player1hp = maxHp;
 	private int _player2hp = maxHp;
@@ -75,7 +76,9 @@ public partial class GlobalState : Node2D
 			_darkness = value;
 			if (value > 0.9f)
 				_darkness = 0.9f;
-
+			else if (value < 0)
+				_darkness = 0;
+			
 			foreach (player node in GetTree().GetNodesInGroup("players"))
 			{
 				node.setIntensity(_darkness);
