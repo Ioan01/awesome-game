@@ -51,7 +51,7 @@ public partial class map : Node2D
 	private void _on_area_2d_body_entered(Node2D body)
 	{
 		if (GetTree().GetNodesInGroup("enemies").Count == 0)
-			if (body.GetClass() != "TileMap")
+			if (body is player)
 			{
 				var level = getRandomLevel();
 				var nextLevel = ResourceLoader.Load<PackedScene>($"res://resources/scenes/scene_{level}.tscn").Instantiate();

@@ -5,7 +5,7 @@ namespace Awesomegame;
 public abstract partial class character : CharacterBody2D
 {
     public bool IsDead { get; set; } = false;
-    private int _hp = 5;
+    protected int _hp = 5;
 
     public virtual int Hp
     {
@@ -52,6 +52,10 @@ public abstract partial class character : CharacterBody2D
             collision.SetDeferred("disabled", true);
 
             IsDead = true;
+            
+            RemoveFromGroup("enemies");
+            RemoveFromGroup("npcs");
+            RemoveFromGroup("players");
         }
     }
 

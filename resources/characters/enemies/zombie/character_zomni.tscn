@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ctu7asquj3k5n"]
+[gd_scene load_steps=14 format=3 uid="uid://ctu7asquj3k5n"]
 
 [ext_resource type="Script" path="res://resources/characters/enemies/enemy.cs" id="1_my2ke"]
 [ext_resource type="Texture2D" uid="uid://dhs2fxw1k6px0" path="res://resources/characters/enemies/zombie/idle/big_zombie_idle_anim_f0.png" id="2_m05cb"]
@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://be1codkky7pyn" path="res://resources/characters/skelet_idle_anim_f2.png" id="10_nbe0f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s2glb"]
-size = Vector2(19.2, 26.8)
+size = Vector2(18.9, 26.6)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gnida"]
 animations = [{
@@ -51,13 +51,17 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qvxha"]
+size = Vector2(19.3, 26.8)
+
 [node name="movement" type="CharacterBody2D"]
 texture_filter = 1
 scale = Vector2(10, 10)
 script = ExtResource("1_my2ke")
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(-0.3, 3.4)
+position = Vector2(-0.350001, 3.4)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_s2glb")
 
 [node name="animation" type="AnimatedSprite2D" parent="."]
@@ -69,3 +73,12 @@ frame_progress = 0.396078
 [node name="skull" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("10_nbe0f")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.349999, 3.4)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_qvxha")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

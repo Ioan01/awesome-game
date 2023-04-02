@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bxubqxh1hcc7x"]
+[gd_scene load_steps=15 format=3 uid="uid://bxubqxh1hcc7x"]
 
 [ext_resource type="Script" path="res://GlobalState.cs" id="1_d0xmn"]
 [ext_resource type="TileSet" uid="uid://c80svru2binmb" path="res://resources/scenes/walls_and_floor.tres" id="1_lldcn"]
@@ -11,18 +11,12 @@
 [ext_resource type="Texture2D" uid="uid://ch8vbyjwpiyrr" path="res://resources/characters/player/idle/wizzard_m_idle_anim_f0.png" id="7_3tu4h"]
 [ext_resource type="PackedScene" uid="uid://c2pkid0ok4ewc" path="res://resources/items/torch/torch.tscn" id="7_uudc8"]
 [ext_resource type="PackedScene" uid="uid://d0qre3r2kgl7" path="res://resources/trap/trap.tscn" id="10_wfn4r"]
-[ext_resource type="PackedScene" uid="uid://dfjnje1l3s65p" path="res://resources/items/potions/size.tscn" id="11_wgxes"]
-[ext_resource type="PackedScene" uid="uid://nk46g4w2axnb" path="res://resources/items/potions/health.tscn" id="12_4qerp"]
-[ext_resource type="PackedScene" uid="uid://bux801wdfcleq" path="res://resources/items/candle.tscn" id="14_8js58"]
+[ext_resource type="PackedScene" uid="uid://ctu7asquj3k5n" path="res://resources/characters/enemies/zombie/character_zomni.tscn" id="12_djky8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3gtb0"]
 radius = 127.063
 
 [sub_resource type="LabelSettings" id="LabelSettings_jgbya"]
-font_size = 100
-
-[sub_resource type="LabelSettings" id="LabelSettings_id8q4"]
-line_spacing = 100.0
 font_size = 100
 
 [node name="world" type="Node2D"]
@@ -128,15 +122,6 @@ position = Vector2(-2725, -806)
 scale = Vector2(22.3125, 18.1429)
 texture = ExtResource("7_3tu4h")
 
-[node name="price" type="Label" parent="hud"]
-visible = false
-offset_left = -498.0
-offset_top = 1322.0
-offset_right = 2014.0
-offset_bottom = 1559.0
-text = "ma-taadsadsadsdas"
-label_settings = SubResource("LabelSettings_id8q4")
-
 [node name="darkness" type="DirectionalLight2D" parent="."]
 energy = 0.0
 blend_mode = 1
@@ -154,15 +139,7 @@ texture = ExtResource("7_3tu4h")
 [node name="trap" parent="." instance=ExtResource("10_wfn4r")]
 position = Vector2(78, -82)
 
-[node name="item2" parent="." instance=ExtResource("12_4qerp")]
-position = Vector2(473, 588)
-Price = 10
-Name = "health"
-
-[node name="item3" parent="." instance=ExtResource("11_wgxes")]
-position = Vector2(-310, 548)
-
-[node name="item4" parent="." instance=ExtResource("14_8js58")]
-position = Vector2(256, 433)
+[node name="movement" parent="." instance=ExtResource("12_djky8")]
+position = Vector2(1078, -111)
 
 [connection signal="body_entered" from="map/Area2D" to="map" method="_on_area_2d_body_entered"]
