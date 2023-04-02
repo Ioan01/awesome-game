@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Awesomegame;
 using Godot;
@@ -27,8 +28,17 @@ public partial class enemy : npc
 
 	public override void _PhysicsProcess(double delta)
 	{
-		var targetPosition = GetTargetHelper(delta)?.Position;
-		if (!targetPosition.HasValue) return;
+		Vector2? targetPosition;
+		try
+		{
+			targetPosition = GetTargetHelper(delta)?.Position;
+		}
+		catch (Exception e)
+		{
+			return;
+		}
+		
+		if (targetPosition == null) return;
 		
 		direction = (targetPosition!.Value - Position).Normalized();
 
@@ -57,9 +67,16 @@ public partial class enemy : npc
 		
 		return targets.MaxBy(x =>
 		{
-			var p = x as CharacterBody2D;
-			return (p.Transform.X.X - Transform.X.X) * (p.Transform.X.X - Transform.X.X) -
-			       (p.Transform.Y.Y - Transform.Y.Y) * (p.Transform.Y.Y - Transform.Y.Y);
+			try
+			{
+				var p = x as CharacterBody2D;
+				return (p.Transform.X.X - Transform.X.X) * (p.Transform.X.X - Transform.X.X) -
+				       (p.Transform.Y.Y - Transform.Y.Y) * (p.Transform.Y.Y - Transform.Y.Y);
+			}
+			catch
+			{
+				return float.MinValue;
+			}
 		}) as CharacterBody2D;
 	}
 	
