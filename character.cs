@@ -49,7 +49,7 @@ public abstract partial class character : CharacterBody2D
                 else if (child is Sprite2D s) {s.Visible = true; GD.Print(s.Name);}
             }
             
-            collision.SetDeferred("disabled", true);
+            collision?.SetDeferred("disabled", true);
 
             IsDead = true;
             
