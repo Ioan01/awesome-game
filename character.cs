@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Linq;
+using Godot;
 
 namespace Awesomegame;
 
@@ -35,6 +36,10 @@ public abstract partial class character : CharacterBody2D
     {
         if (Hp <= 0)
         {
+            GlobalState state = GetTree().CurrentScene.FindChild("globals") as GlobalState;
+            state.reset();
+
+            
             RemoveFromGroup("enemies");
             RemoveFromGroup("npcs");
             RemoveFromGroup("players");
@@ -42,9 +47,44 @@ public abstract partial class character : CharacterBody2D
             var coin = GD.Load<PackedScene>("res://resources/items/coin/coin.tscn").Instantiate() as coin;
             coin.GlobalPosition = GlobalPosition;
             GetTree().CurrentScene.FindChild("map").AddChild(coin);
+            
+            var death = GD.Load<PackedScene>("res://death.tscn").Instantiate() as death;
+            death.Position = Position;
+            GetTree().CurrentScene.FindChild("map").AddChild(death);
 
             if (this is enemy)
                 GlobalState.SpeedModifier += 0.01f;
+
+            if (GetTree().GetNodesInGroup("players").Count == 0)
+            {
+                
+                
+                
+                foreach (character node in GetTree().GetNodesInGroup("players"))
+                {
+                    node.Position = Vector2.Zero;
+                    
+                }
+                
+                foreach (character node in GetTree().GetNodesInGroup("enemies"))
+                {
+                    node.QueueFree();
+                    
+                }
+                var player = GD.Load<PackedScene>("res://resources/characters/player/player.tscn").Instantiate() as player;
+                player.Position = Vector2.Zero;
+                player.AddToGroup("players");
+                GetTree().CurrentScene.FindChild("map").AddChild(player);
+                
+                var player2 = GD.Load<PackedScene>("res://resources/characters/player/player.tscn").Instantiate() as player;
+                player2.Position = new Vector2(100, 100);
+                player2.isPlayer1 = false;
+                player2.AddToGroup("players");
+                GetTree().CurrentScene.FindChild("map").AddChild(player2);
+
+                
+                
+            }
         }
     }
 

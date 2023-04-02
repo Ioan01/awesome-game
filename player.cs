@@ -22,7 +22,7 @@ public partial class player : character
 
 	private PointLight2D light2D;
 	[Export]
-	private bool isPlayer1 = true;
+	public bool isPlayer1 = true;
 
 	private float elapsedDash = 0;
 

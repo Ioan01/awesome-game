@@ -92,4 +92,13 @@ public partial class GlobalState : Node2D
 	}
 
 	public int Wave { get; set; }
+
+	public void reset()
+	{
+		hoveredItem = null;
+		Player1Hearts = maxHp;
+		Player2Hearts = maxHp;
+		Gold = 20;
+		Darkness = 0;
+	}
 }
