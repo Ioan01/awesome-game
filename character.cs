@@ -36,14 +36,17 @@ public abstract partial class character : CharacterBody2D
     {
         if (Hp <= 0)
         {
-            GlobalState state = GetTree().CurrentScene.FindChild("globals") as GlobalState;
-            state.reset();
 
             
             RemoveFromGroup("enemies");
             RemoveFromGroup("npcs");
             RemoveFromGroup("players");
             QueueFree();
+            
+            GlobalState state = GetTree().CurrentScene.FindChild("globals") as GlobalState;
+            if (this is player && GetTree().GetNodesInGroup("players").Count == 0)
+                state.reset();
+            
             var coin = GD.Load<PackedScene>("res://resources/items/coin/coin.tscn").Instantiate() as coin;
             coin.GlobalPosition = GlobalPosition;
             GetTree().CurrentScene.FindChild("map").AddChild(coin);
@@ -75,13 +78,16 @@ public abstract partial class character : CharacterBody2D
                 var player = GD.Load<PackedScene>("res://resources/characters/player/player.tscn").Instantiate() as player;
                 player.Position = Vector2.Zero;
                 player.AddToGroup("players");
-                GetTree().CurrentScene.FindChild("map").AddChild(player);
+                var map = GetTree().CurrentScene.FindChild("map");
+                map.AddChild(player);
+                player.Owner = map;
                 
                 var player2 = GD.Load<PackedScene>("res://resources/characters/player/player.tscn").Instantiate() as player;
                 player2.Position = new Vector2(100, 100);
                 player2.isPlayer1 = false;
                 player2.AddToGroup("players");
-                GetTree().CurrentScene.FindChild("map").AddChild(player2);
+                map.AddChild(player2);
+                player2.Owner = map;
 
                 
                 

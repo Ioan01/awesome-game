@@ -100,27 +100,27 @@ public partial class map : Node2D
 
 	private void _on_area_2d_body_entered(Node2D body)
 	{
-		if (GetTree().GetNodesInGroup("enemies").Count == 0)
-			if (body is player)
-			{
-				var level = getRandomLevel();
-				var nextLevel = ResourceLoader.Load<PackedScene>($"res://resources/scenes/scene_{level}.tscn").Instantiate();
-				GetParent().AddChild(nextLevel);
-				QueueFree();
-				
-				foreach (var node in GetTree().GetNodesInGroup("players"))
-				{
-					node.RemoveFromGroup("players");
-				}
-				
-				foreach (var node in GetTree().GetNodesInGroup("enemies"))
-				{
-					node.RemoveFromGroup("enemies");
-					node.RemoveFromGroup("npcs");
-				}
-
-				state.Enemeies += 5;
-			}
+		// if (GetTree().GetNodesInGroup("enemies").Count == 0)
+		// 	if (body is player)
+		// 	{
+		// 		var level = getRandomLevel();
+		// 		var nextLevel = ResourceLoader.Load<PackedScene>($"res://resources/scenes/scene_{level}.tscn").Instantiate();
+		// 		GetParent().AddChild(nextLevel);
+		// 		QueueFree();
+		// 		
+		// 		foreach (var node in GetTree().GetNodesInGroup("players"))
+		// 		{
+		// 			node.RemoveFromGroup("players");
+		// 		}
+		// 		
+		// 		foreach (var node in GetTree().GetNodesInGroup("enemies"))
+		// 		{
+		// 			node.RemoveFromGroup("enemies");
+		// 			node.RemoveFromGroup("npcs");
+		// 		}
+		//
+		// 		state.Enemeies += 5;
+		// 	}
 	}
 
     private int getRandomLevel()
