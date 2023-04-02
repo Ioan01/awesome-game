@@ -67,8 +67,6 @@ public partial class player : character
 			: Input.GetVector("left_2", "right_2", "up_2", "down_2");
 		Move(direction, (float)delta);
 
-		if (IsDead) return;
-
 		elapsedDash += (float)delta;
 		if (Input.IsActionPressed("dash") && elapsedDash >= 1)
 		{

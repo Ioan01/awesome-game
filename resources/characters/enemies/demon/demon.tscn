@@ -37,7 +37,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0br1e"]
 size = Vector2(21.9, 28.2)
 
-[node name="movement" type="CharacterBody2D"]
+[node name="movement2" type="CharacterBody2D"]
 texture_filter = 1
 scale = Vector2(10, 10)
 script = ExtResource("1_p4nfx")

@@ -3,6 +3,8 @@ using Godot;
 
 public partial class projectile : Area2D
 {
+    private int enemyCnt = 0;
+    
     private const float speed = 1500;
     public Vector2 direction { get; set; }
 
@@ -19,8 +21,10 @@ public partial class projectile : Area2D
         {
             c.Hp--;
             c.KnockBack(direction);
+            enemyCnt++;
         }
 
-        QueueFree();
+        if (node is not character || enemyCnt == 3)
+            QueueFree();
     }
 }

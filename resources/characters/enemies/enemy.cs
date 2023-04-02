@@ -55,11 +55,7 @@ public partial class enemy : npc
 		npcs.ExceptWith(GetTree().GetNodesInGroup("enemies"));
 		targets.UnionWith(npcs);
 		
-		return targets.Where(x =>
-		{
-			var p = x as character;
-			return !p.IsDead;
-		}).MaxBy(x =>
+		return targets.MaxBy(x =>
 		{
 			var p = x as CharacterBody2D;
 			return (p.Transform.X.X - Transform.X.X) * (p.Transform.X.X - Transform.X.X) -
@@ -77,13 +73,7 @@ public partial class enemy : npc
 		npcs.ExceptWith(GetTree().GetNodesInGroup("enemies"));
 		targets.UnionWith(npcs);
 
-		var filtered = targets.Where(x =>
-		{
-			var p = x as character;
-			return !p.IsDead;
-		});
-
-		if (!filtered.Contains(c)) return;
+		if (!targets.Contains(c)) return;
 		
 		c.Hp--;
 		c.KnockBack(direction);

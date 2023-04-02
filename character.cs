@@ -1,11 +1,9 @@
-﻿using System.Linq;
-using Godot;
+﻿using Godot;
 
 namespace Awesomegame;
 
 public abstract partial class character : CharacterBody2D
 {
-    public bool IsDead { get; set; } = false;
     protected int _hp = 5;
 
     public virtual int Hp
@@ -37,43 +35,16 @@ public abstract partial class character : CharacterBody2D
     {
         if (Hp <= 0)
         {
-            foreach (var child in GetChildren())
-            {
-                if (child.Name != "skull")
-                {
-                    if (child is AnimatedSprite2D sprite)
-                        sprite.Visible = false;
-                    else if (child is Sprite2D spr)
-                        spr.Visible = false;
-                }
-
-                else if (child is Sprite2D s) {s.Visible = true; GD.Print(s.Name);}
-            }
-            
-            collision?.SetDeferred("disabled", true);
-
-            IsDead = true;
-            
-            
-            
             RemoveFromGroup("enemies");
             RemoveFromGroup("npcs");
             RemoveFromGroup("players");
-            
+            QueueFree();
             var coin = GD.Load<PackedScene>("res://resources/items/coin/coin.tscn").Instantiate() as coin;
             coin.GlobalPosition = GlobalPosition;
             GetTree().CurrentScene.FindChild("map").AddChild(coin);
 
-            if (this is player)
-            {
-                if (GetTree().GetNodesInGroup("players").All(node => (node as character).IsDead))
-                {
-                    
-                }
-            }
-
-            
-            
+            if (this is enemy)
+                GlobalState.SpeedModifier += 0.01f;
         }
     }
 
@@ -85,7 +56,6 @@ public abstract partial class character : CharacterBody2D
     
     protected void Move(Vector2 direction, float delta)
     {
-        if (IsDead) return;
         Vector2 velocity = Velocity;
 		
         // Get the input direction and handle the movement/deceleration.
