@@ -52,6 +52,7 @@ public partial class GlobalState : Node2D
 		}
 	}
 
+	public static float SizeModifier { get; set; } = 1f;
 
 	public static float SpeedModifier { get; set; } = 1f;
 

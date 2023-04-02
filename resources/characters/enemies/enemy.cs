@@ -28,6 +28,9 @@ public partial class enemy : npc
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (GetTree().GetNodesInGroup("players").Count == 0)
+			return;
+		
 		Vector2? targetPosition;
 		try
 		{

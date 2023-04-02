@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Godot;
 
 namespace Awesomegame;
@@ -53,6 +53,7 @@ public abstract partial class character : CharacterBody2D
             GetTree().CurrentScene.FindChild("map").AddChild(death);
 
             if (this is enemy)
+                GlobalState.SpeedModifier += 0.05f;
                 GlobalState.SpeedModifier += 0.01f;
 
             if (GetTree().GetNodesInGroup("players").Count == 0)
