@@ -16,7 +16,6 @@ public partial class enemy : npc
 		AddToGroup("enemies");
 		base._Ready();
 
-		var nodes = GetTree().GetNodesInGroup("players");
 
 	}
 
