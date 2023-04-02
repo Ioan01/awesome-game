@@ -58,8 +58,8 @@ isPlayer1 = false
 
 [node name="Camera2D" type="Camera2D" parent="map"]
 modulate = Color(0.0156863, 0.0156863, 0, 1)
-position = Vector2(147, -558)
-zoom = Vector2(0.15, 0.15)
+position = Vector2(153, 462)
+zoom = Vector2(0.22, 0.22)
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
@@ -129,9 +129,34 @@ position = Vector2(392, 222)
 [node name="hud" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
+[node name="player2_hp" type="Node2D" parent="hud"]
+position = Vector2(-1129, 759.5)
+
+[node name="hp_2" type="Sprite2D" parent="hud/player2_hp"]
+texture_filter = 1
+position = Vector2(-1925.5, -1096)
+scale = Vector2(27, 28.8125)
+texture = ExtResource("6_v8heb")
+
+[node name="hp2_l" type="Label" parent="hud/player2_hp"]
+offset_left = -1588.5
+offset_top = -1214.0
+offset_right = -1138.5
+offset_bottom = -1009.0
+text = "5"
+label_settings = SubResource("LabelSettings_jgbya")
+
+[node name="WizzardMIdleAnimF0" type="Sprite2D" parent="hud/player2_hp"]
+modulate = Color(0.901961, 0.552941, 0, 1)
+texture_filter = 1
+position = Vector2(-2309, -680.5)
+scale = Vector2(22.3125, 18.1429)
+texture = ExtResource("7_3tu4h")
+
 [node name="health" type="Node2D" parent="hud"]
 
 [node name="gold" type="Node2D" parent="hud"]
+position = Vector2(2412, 1061)
 
 [node name="gold_t" type="Sprite2D" parent="hud/gold"]
 texture_filter = 1
@@ -147,45 +172,6 @@ offset_bottom = -1310.0
 text = "0
 "
 label_settings = SubResource("LabelSettings_jgbya")
-
-[node name="player1_hp" type="Node2D" parent="hud"]
-
-[node name="hp_1" type="Sprite2D" parent="hud/player1_hp"]
-texture_filter = 1
-position = Vector2(-2211, -684)
-scale = Vector2(28.625, 28.625)
-texture = ExtResource("6_v8heb")
-
-[node name="hp1_l" type="Label" parent="hud/player1_hp"]
-offset_left = -1880.0
-offset_top = -777.0
-offset_right = -1430.0
-offset_bottom = -595.0
-text = "5"
-label_settings = SubResource("LabelSettings_jgbya")
-
-[node name="player2_hp" type="Node2D" parent="hud"]
-
-[node name="hp_2" type="Sprite2D" parent="hud/player2_hp"]
-texture_filter = 1
-position = Vector2(-2216, -1221)
-scale = Vector2(27, 28.8125)
-texture = ExtResource("6_v8heb")
-
-[node name="hp2_l" type="Label" parent="hud/player2_hp"]
-offset_left = -1879.0
-offset_top = -1339.0
-offset_right = -1429.0
-offset_bottom = -1134.0
-text = "5"
-label_settings = SubResource("LabelSettings_jgbya")
-
-[node name="WizzardMIdleAnimF0" type="Sprite2D" parent="hud/player2_hp"]
-modulate = Color(0.901961, 0.552941, 0, 1)
-texture_filter = 1
-position = Vector2(-2725, -806)
-scale = Vector2(22.3125, 18.1429)
-texture = ExtResource("7_3tu4h")
 
 [node name="price" type="Label" parent="hud"]
 visible = false
@@ -204,6 +190,29 @@ offset_bottom = -1055.0
 text = "Wave 0"
 label_settings = SubResource("LabelSettings_kssa5")
 
+[node name="player1_hp" type="Node2D" parent="hud"]
+position = Vector2(-1129, 759.5)
+
+[node name="hp_1" type="Sprite2D" parent="hud/player1_hp"]
+texture_filter = 1
+position = Vector2(-1920.5, -559)
+scale = Vector2(28.625, 28.625)
+texture = ExtResource("6_v8heb")
+
+[node name="hp1_l" type="Label" parent="hud/player1_hp"]
+offset_left = -1589.5
+offset_top = -652.0
+offset_right = -1139.5
+offset_bottom = -470.0
+text = "5"
+label_settings = SubResource("LabelSettings_jgbya")
+
+[node name="WizzardMIdleAnimF0" type="Sprite2D" parent="hud"]
+texture_filter = 1
+position = Vector2(-3497, -434)
+scale = Vector2(23.5, 17.3214)
+texture = ExtResource("7_3tu4h")
+
 [node name="darkness" type="DirectionalLight2D" parent="."]
 position = Vector2(753, -339)
 energy = 0.0
@@ -212,12 +221,6 @@ script = ExtResource("6_cbp5p")
 
 [node name="torch" parent="." instance=ExtResource("7_uudc8")]
 position = Vector2(-396, -300)
-
-[node name="WizzardMIdleAnimF0" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(-2710, -1353)
-scale = Vector2(23.5, 17.3214)
-texture = ExtResource("7_3tu4h")
 
 [node name="trap" parent="." instance=ExtResource("10_wfn4r")]
 position = Vector2(78, -82)

@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Linq;
+using Godot;
 
 namespace Awesomegame;
 
@@ -53,9 +54,26 @@ public abstract partial class character : CharacterBody2D
 
             IsDead = true;
             
+            
+            
             RemoveFromGroup("enemies");
             RemoveFromGroup("npcs");
             RemoveFromGroup("players");
+            
+            var coin = GD.Load<PackedScene>("res://resources/items/coin/coin.tscn").Instantiate() as coin;
+            coin.GlobalPosition = GlobalPosition;
+            GetTree().CurrentScene.FindChild("map").AddChild(coin);
+
+            if (this is player)
+            {
+                if (GetTree().GetNodesInGroup("players").All(node => (node as character).IsDead))
+                {
+                    
+                }
+            }
+
+            
+            
         }
     }
 
