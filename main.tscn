@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bxubqxh1hcc7x"]
+[gd_scene load_steps=17 format=3 uid="uid://bxubqxh1hcc7x"]
 
 [ext_resource type="Script" path="res://GlobalState.cs" id="1_d0xmn"]
 [ext_resource type="TileSet" uid="uid://c80svru2binmb" path="res://resources/scenes/walls_and_floor.tres" id="1_lldcn"]
@@ -19,12 +19,20 @@ radius = 127.063
 [sub_resource type="LabelSettings" id="LabelSettings_jgbya"]
 font_size = 100
 
+[sub_resource type="LabelSettings" id="LabelSettings_id8q4"]
+line_spacing = 100.0
+font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_kssa5"]
+font_size = 200
+
 [node name="world" type="Node2D"]
 
 [node name="globals" type="Node2D" parent="."]
 script = ExtResource("1_d0xmn")
 
 [node name="map" type="Node2D" parent="."]
+position = Vector2(584, 1152)
 script = ExtResource("2_7q7ul")
 
 [node name="floor" type="TileMap" parent="map"]
@@ -50,7 +58,7 @@ isPlayer1 = false
 
 [node name="Camera2D" type="Camera2D" parent="map"]
 modulate = Color(0.0156863, 0.0156863, 0, 1)
-position = Vector2(122, 529)
+position = Vector2(147, -558)
 zoom = Vector2(0.15, 0.15)
 editor_draw_limits = true
 editor_draw_drag_margin = true
@@ -139,6 +147,23 @@ texture_filter = 1
 position = Vector2(-2725, -806)
 scale = Vector2(22.3125, 18.1429)
 texture = ExtResource("7_3tu4h")
+
+[node name="price" type="Label" parent="hud"]
+visible = false
+offset_left = -498.0
+offset_top = 1322.0
+offset_right = 2014.0
+offset_bottom = 1559.0
+text = "ma-taadsadsadsdas"
+label_settings = SubResource("LabelSettings_id8q4")
+
+[node name="wave" type="Label" parent="hud"]
+offset_left = -284.0
+offset_top = -1331.0
+offset_right = 1234.0
+offset_bottom = -1055.0
+text = "Wave 0"
+label_settings = SubResource("LabelSettings_kssa5")
 
 [node name="darkness" type="DirectionalLight2D" parent="."]
 position = Vector2(753, -339)

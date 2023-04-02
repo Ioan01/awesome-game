@@ -5,6 +5,8 @@ using System.Linq;
 
 public partial class map : Node2D
 {
+	
+	
 	private static string[] enemies = new[]
 	{
 		"res://resources/characters/enemies/demon/demon.tscn",
@@ -12,18 +14,22 @@ public partial class map : Node2D
 		"res://resources/characters/enemies/zombie/character_zomni.tscn",
 		"res://resources/characters/enemies/necromancers/necromancer.tscn"
 	};
+
+	private static string[] items = new[]
+	{
+		"",
+	};
 	
 	
 	private GlobalState state;
+
+	private Label wave;
 	private int numberOfMaps = 2;
-
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
-        state = GetTree().CurrentScene.FindChild("globals") as GlobalState;
-        GD.Print("Loaded");
+	private double elapsed;
 
 
+	private void spawn()
+	{
 		var spawn = FindChild("spawner");
 
 		if (spawn != null)
@@ -38,14 +44,37 @@ public partial class map : Node2D
 				
 			}
 		}
+	}
+	// Called when the node enters the scene tree for the first time.
+    public override void _Ready()
+    {
+        state = GetTree().CurrentScene.FindChild("globals") as GlobalState;
+        state.Enemeies = 5;
+
+        GD.Print("Loaded");
+
 
 		
 
-	}
+		wave = GetTree().CurrentScene.FindChild("wave") as Label;
+		spawn();
+		
+		
+    }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
+	    elapsed += delta;
+
+	    if (elapsed >= 20)
+	    {
+		    state.Wave += 1;
+		    wave.Text = $"Wave {state.Wave}";
+		    elapsed = 0;
+		    state.Enemeies = (int)(state.Enemeies * 1.25);
+		    spawn();
+	    }
     }
 
 	private void _on_area_2d_body_entered(Node2D body)

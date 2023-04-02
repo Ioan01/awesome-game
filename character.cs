@@ -89,14 +89,12 @@ public abstract partial class character : CharacterBody2D
 			
             wasFlipped = isFlipped;
 			
-            sprite2D?.Play("run");
         }
         else
         {
             velocity.X = (knockBackVelocity != Vector2.Zero) ? knockBackVelocity.X * Speed : Mathf.MoveToward(Velocity.X, 0, Speed);
             velocity.Y = (knockBackVelocity != Vector2.Zero) ? knockBackVelocity.Y * Speed : Mathf.MoveToward(Velocity.Y, 0, Speed);
 			
-            sprite2D?.Play("idle");
         }
 
         sinceKnockback += delta;

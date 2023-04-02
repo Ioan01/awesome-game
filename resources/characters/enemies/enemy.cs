@@ -14,10 +14,15 @@ public partial class enemy : npc
 	public override void _Ready()
 	{
 		_hp = 10;
-		sprite2D = FindChild("animations") as AnimatedSprite2D;
+		sprite2D = FindChild("animation") as AnimatedSprite2D;
 		collision = FindChild("collision") as CollisionShape2D;
 		AddToGroup("enemies");
 		base._Ready();
+		
+		sprite2D.Play("run");
+
+
+
 	}
 
 	public override void _PhysicsProcess(double delta)

@@ -90,4 +90,6 @@ public partial class GlobalState : Node2D
 			light.Energy = _darkness;
 		}
 	}
+
+	public int Wave { get; set; }
 }
