@@ -19,6 +19,11 @@ public partial class projectile : Area2D
         if (GlobalTransform == node.GlobalTransform) return;
         if (node is character c)
         {
+            var hit = GD.Load<PackedScene>("res://hit.tscn").Instantiate() as hit;
+            hit.Position = node.Position;
+            hit.Direction = direction;
+            GetTree().CurrentScene.FindChild("map").AddChild(hit);
+            
             c.Hp--;
             c.KnockBack(direction);
             enemyCnt++;

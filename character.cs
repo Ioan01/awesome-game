@@ -48,7 +48,7 @@ public abstract partial class character : CharacterBody2D
                 state.reset();
             
             var coin = GD.Load<PackedScene>("res://resources/items/coin/coin.tscn").Instantiate() as coin;
-            coin.GlobalPosition = GlobalPosition;
+            coin.Position = Position;
             GetTree().CurrentScene.FindChild("map").AddChild(coin);
             
             var death = GD.Load<PackedScene>("res://death.tscn").Instantiate() as death;
