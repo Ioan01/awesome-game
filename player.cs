@@ -12,17 +12,19 @@ public partial class player : character
 	{
 		get => _hp;
 		set
-        {
-        	_hp = value;
-            if (!isPlayer1) state.Player1Hearts = value;
-            else state.Player2Hearts = value;
-        	TookDamage();
-        }
+		{
+			_hp = value;
+			if (!isPlayer1) state.Player1Hearts = value;
+			else state.Player2Hearts = value;
+			TookDamage();
+		}
 	}
 
 	private PointLight2D light2D;
 	[Export]
 	private bool isPlayer1 = true;
+
+	private float elapsedDash = 0;
 
 	[Export]
 	protected override float Speed { get; set; } = 800;
@@ -66,7 +68,14 @@ public partial class player : character
 		Move(direction, (float)delta);
 
 		if (IsDead) return;
-		
+
+		elapsedDash += (float)delta;
+		if (Input.IsActionPressed("dash") && elapsedDash >= 1)
+		{
+			KnockBack(direction);
+			elapsedDash = 0;
+		}
+
 		if (Input.IsActionPressed("shoot") && isPlayer1 && elapsed >= 0.75f / GlobalState.AttackSpeedModifier / GlobalState.SpeedModifier)
 		{
 			var b = GD.Load<PackedScene>("res://projectile.tscn").Instantiate() as projectile;
