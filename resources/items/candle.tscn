@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bux801wdfcleq"]
+[gd_scene load_steps=8 format=3 uid="uid://2iwh72qhxk3i"]
 
 [ext_resource type="Script" path="res://resources/items/candle.cs" id="1_j2xab"]
-[ext_resource type="Texture2D" uid="uid://ykioggw26r2m" path="res://resources/items/torch/weapon_red_magic_staff.png" id="2_vcip1"]
+[ext_resource type="Texture2D" uid="uid://oi2pncif0i0r" path="res://resources/items/torch/C300-1.png" id="2_n4pc4"]
+[ext_resource type="Texture2D" uid="uid://fmgwj6mmtlbm" path="res://resources/items/torch/C300-2.png" id="3_nv4ie"]
+[ext_resource type="Texture2D" uid="uid://cqa2b054f7i2v" path="res://resources/items/torch/C300-3.png" id="4_m4rel"]
+[ext_resource type="Texture2D" uid="uid://c4i0j6dhqti7x" path="res://circle-outline-png-6.png" id="5_slwg2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xwfqc"]
 size = Vector2(13.6, 11.9)
@@ -10,23 +13,37 @@ size = Vector2(13.6, 11.9)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_vcip1")
+"texture": ExtResource("2_n4pc4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nv4ie")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_m4rel")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 6.0
 }]
 
 [node name="item" type="Area2D"]
 texture_filter = 1
-scale = Vector2(10, 10)
+scale = Vector2(0.3, 0.3)
 script = ExtResource("1_j2xab")
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(-0.0999995, -0.0499996)
 shape = SubResource("RectangleShape2D_xwfqc")
 
 [node name="animation" type="AnimatedSprite2D" parent="."]
-position = Vector2(0.2, -0.799999)
-scale = Vector2(0.7625, 0.213333)
+z_index = 1
 sprite_frames = SubResource("SpriteFrames_pl580")
+frame_progress = 0.929729
+
+[node name="light" type="PointLight2D" parent="."]
+position = Vector2(0, -200)
+scale = Vector2(20, 20)
+color = Color(0.607843, 0.466667, 0.160784, 1)
+energy = 0.59
+shadow_enabled = true
+texture = ExtResource("5_slwg2")
+texture_scale = 0.2
