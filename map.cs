@@ -82,7 +82,7 @@ public partial class map : Node2D
 			var x = node as player;
 
 			if ((v.X - x.GlobalPosition.X) * (v.X - x.GlobalPosition.X) -
-			    (v.Y - x.GlobalPosition.Y) * (v.Y - x.GlobalPosition.Y) < d * d)
+				(v.Y - x.GlobalPosition.Y) * (v.Y - x.GlobalPosition.Y) < d * d)
 				return true;
 		}
 
